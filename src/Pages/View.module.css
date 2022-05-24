@@ -1,0 +1,52 @@
+.bookContainer {
+    position: relative;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.bookContentLeft, .bookContentRight {
+    display: inline-block;
+}
+
+.bookContentLeft {
+    width: 30%;
+    text-align: center;
+}
+
+.bookContentRight {
+    width: 70%;
+    position: absolute;
+}
+
+img {
+    margin: 10px;
+}
+
+.bookTitle {
+    font-size: 25px;
+}
+
+.bookAuthor {
+    margin: 5px 0px;
+}
+
+.bookDetails {
+    display: flex;
+    gap: 10px;
+    font-size: 12px;
+    color: rgb(90, 88, 88);
+    margin: 5px 0px;
+}
+
+.bookDescription {
+    margin: 5px 0px;
+}
+
+.bookRatingUser {
+    margin: 20px 0px;
+    font-size: 25px;
+}
+
+.reviewsContainer {
+    margin-top: 30px;
+}

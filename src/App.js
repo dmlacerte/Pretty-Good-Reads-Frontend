@@ -9,17 +9,25 @@ import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <>
+    <div>
+      <header className='headerLayout'>
+      <Header />
+      </header>
       <main>
-        <Header />
-        <Routes>
-            <Route path='/' element={<MainPage />}/> 
-            <Route path='/search' element={<SearchPage />} />
-            <Route path='/search/:id' element={<ViewPage />} />
-        </Routes>
-        <UserLists />
+        <div className='bodyContainerLayout'>
+          <div className='bodyContentLayout'>
+            <Routes>
+                <Route path='/' element={<MainPage />}/> 
+                <Route path='/search' element={<SearchPage />} />
+                <Route path='/search/:id' element={<ViewPage />} />
+            </Routes>
+          </div>
+          <div className='userListsLayout'>
+            <UserLists />
+          </div>
+        </div>
       </main>
-    </>
+    </div>
   );
 }
 

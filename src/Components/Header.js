@@ -1,11 +1,13 @@
+import styles from './Header.module.css';
+
 function MainLayout() {
     return (
-        <>
-            <h1>Pretty Good Reads</h1>
-            <div>
-                <p>My Account</p>
+        <div>
+            <h1 className={styles.pageTitle}>Pretty Good Reads</h1>
+            <div className={styles.accountLink}>
+                <a href='/'>My Account</a>
             </div>
-        </>
+        </div>
     )
 }
 

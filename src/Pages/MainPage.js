@@ -1,17 +1,19 @@
-import UserLists from '../Components/UserLists.js';
+import styles from './Main.module.css';
 
 function MainPage() {
     return (
         <>
-            <div>
-                <h2>What Are You Reading Today?</h2>
+            <div className={styles.container}>
+                <h2 className={styles.title}>What Are You Reading Today?</h2>
                 <form action="/search" method="GET">
-                    <input type="text" id="title" name="title" placeholder="Title"/>
-                    <input type="text" id="author" name="author" placeholder="Author"/>
-                    <input type="text" id="genre" name="genre" placeholder="Genre"/>
+                    <div className={styles.searchFields}>
+                        <input type="text" id="title" name="title" placeholder="Title"/>
+                        <input type="text" id="author" name="author" placeholder="Author"/>
+                        <input type="text" id="genre" name="genre" placeholder="Genre"/>
+                    </div>
                     <button type="submit" name="submit" value="Search">Search For a New Book</button>
                 </form>
-                <p>OR</p>
+                <p className={styles.or}>OR</p>
                 <form>
                     <button type="submit">Select Random from TBR</button>
                 </form>
