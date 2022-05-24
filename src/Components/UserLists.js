@@ -1,6 +1,21 @@
 import styles from './UserLists.module.css';
+import React, { useState, useEffect } from 'react';
 
 function UserLists() {
+    const [userBooks, setUserBooks] = useState(null);
+
+    function updateUserBooks() {
+        //pull books from user API
+    }
+
+    useEffect(() => {
+        updateUserBooks();
+    }, []);
+
+    if (!userBooks) {
+        return <h1>Loading...</h1>
+    }
+    
     return (
         <div>
             <div className={styles.listOptions}>

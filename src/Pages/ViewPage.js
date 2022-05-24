@@ -1,6 +1,31 @@
 import styles from './View.module.css';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function ViewPage() {
+    let { id } = useParams();
+    const [book, setBook] = useState(null);
+    const [bookReviews, setBookReviews] = useState(null);
+
+    function updateBook() {
+        //use id to fetch book data from api
+    }
+
+    function updateBookReviews() {
+        //use id to fetch book reviews from database
+        //universal id we can use b/w api and database?
+    }
+
+    useEffect(() => {
+        updateBook();
+        updateBookReviews();
+    }, []);
+
+    //should we split reviews into it's own component? 
+    if (!book || !bookReviews) {
+        return <h1>Loading...</h1>
+    }
+     
     return (
         <>
             <div className={styles.bookContainer}>
