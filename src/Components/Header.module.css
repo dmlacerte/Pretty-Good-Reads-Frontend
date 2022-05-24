@@ -1,0 +1,13 @@
+.pageTitle {
+    text-align: center;
+    padding: 2vh;
+}
+
+.accountLink {
+    display: inline-block;
+    background-color: lightcoral;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+}

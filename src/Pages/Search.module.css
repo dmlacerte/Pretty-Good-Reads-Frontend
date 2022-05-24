@@ -1,0 +1,14 @@
+.title {
+    margin-bottom: 15px;
+}
+
+.resultsContainer {
+    border: 1px solid black;
+    background-color: peachpuff;
+}
+
+.resultContainer {
+    margin: 5px;
+    padding: 5px;
+    background-color: gray;
+}
