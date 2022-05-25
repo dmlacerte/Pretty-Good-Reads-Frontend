@@ -1,13 +1,21 @@
 .pageTitle {
     text-align: center;
     padding: 2vh;
+    font-family: 'Bad Script', cursive;
+    font-size: 50px;
 }
 
 .accountLink {
     display: inline-block;
-    background-color: lightcoral;
     position: absolute;
     top: 0;
     right: 0;
-    padding: 5px;
+    border: 10px solid antiquewhite;
+}
+
+.accountLink a {
+    text-decoration: none;
+    background-color: antiquewhite; 
+    font-style: italic;
+    cursor: pointer;
 }

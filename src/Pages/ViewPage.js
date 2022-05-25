@@ -22,9 +22,9 @@ function ViewPage() {
     }, []);
 
     //should we split reviews into it's own component? 
-    if (!book || !bookReviews) {
-        return <h1>Loading...</h1>
-    }
+    // if (!book || !bookReviews) {
+    //     return <h1>Loading...</h1>
+    // }
      
     return (
         <>
