@@ -14,9 +14,9 @@ function SearchPage() {
         updateBookResults();
     }, []);
 
-    if (!bookResults) {
-        return <h1>Loading...</h1>
-    }
+    // if (!bookResults) {
+    //     return <h1>Loading...</h1>
+    // }
     
     return (
         <>

@@ -12,9 +12,9 @@ function UserLists() {
         updateUserBooks();
     }, []);
 
-    if (!userBooks) {
-        return <h1>Loading...</h1>
-    }
+    // if (!userBooks) {
+    //     return <h1>Loading...</h1>
+    // }
     
     return (
         <div>
