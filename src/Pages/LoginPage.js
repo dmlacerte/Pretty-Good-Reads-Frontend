@@ -1,9 +1,8 @@
 import styles from './Login.module.css';
 import { GoogleLogin } from '@react-oauth/google';
 
-function LoginPage() {
+function LoginPage(props) {
     const handleLogin = async googleData => {
-        console.log(`token: ${googleData.credential}`)
         const res = await fetch("http://localhost:4000/api/v1/auth/google", {
             method: "POST",
             body: JSON.stringify({
@@ -13,9 +12,10 @@ function LoginPage() {
             "Content-Type": "application/json"
           }
         })
+        
         const data = await res.json();
+        props.setUser(data);
         console.log(data);
-        // store returned user somehow
     }
     
     return (
@@ -23,7 +23,7 @@ function LoginPage() {
             <h1 className={styles.title}>Pretty Good Reads</h1>
             <div className={styles.container}>
                 <div className={styles.leftContainer}>
-                    <h2 className={styles.signUp}>Sign Up To Start Reading Today!</h2>
+                    <h2 className={styles.signUp}>Log In To Start Reading Today!</h2>
                     <GoogleLogin
                         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                         buttonText="Log in with Google"
@@ -32,7 +32,7 @@ function LoginPage() {
                         cookiePolicy={'single_host_origin'}
                     />
                     <br/>
-                    <a className={styles.signIn}>Already have an account? Log In</a>
+                    <a className={styles.signIn}>Sign in above via your Google Account</a>
                 </div>
                 <div className={styles.rightContainer}>
                     <img className={styles.gif} src='https://media1.giphy.com/media/1BWKyYQX2K55GwiUPc/giphy.gif?cid=ecf05e47eiw9b5x072c8bk6ivovo5jj1nb256ju5dn6jr4pr&rid=giphy.gif&ct=g' />
