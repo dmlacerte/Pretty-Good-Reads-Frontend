@@ -9,24 +9,16 @@ import LoginPage from './Pages/LoginPage.js';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  //add some kind of check for user login? and then only let access to pages once login completed
-  const [userLogin, setUserLogin] = useState(null);
 
-  function validateUserLogin() {
-    //add user login validation here
-  }
+  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    validateUserLogin();
-  }, []);
-
-  // if (!userLogin) {
-  //   return (
-  //     <div>
-  //       <LoginPage />
-  //     </div>
-  //   )
-  // } else {
+  if (!user) {
+    return (
+      <div>
+        <LoginPage user={user} setUser={setUser} />
+      </div>
+    )
+  } else {
     return (
       <div>
         <header className='headerLayout'>
@@ -48,7 +40,7 @@ function App() {
         </main>
       </div>
     );
-  // }
+    }
 }
 
 export default App;
