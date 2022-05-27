@@ -3,7 +3,10 @@ import { GoogleLogin } from '@react-oauth/google';
 
 function LoginPage(props) {
     const handleLogin = async googleData => {
-        const res = await fetch("http://localhost:4000/api/v1/auth/google", {
+        // console.log(`token: ${googleData.credential}`)
+        const res = await fetch(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + "/api/v1/auth/google"
+        : process.env.REACT_APP_BACK_END_DEV + "/api/v1/auth/google", {
             method: "POST",
             body: JSON.stringify({
             token: googleData.credential
