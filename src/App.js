@@ -6,6 +6,7 @@ import SearchPage from './Pages/SearchPage.js';
 import ViewPage from './Pages/ViewPage.js';
 import UserLists from './Components/UserLists.js';
 import LoginPage from './Pages/LoginPage.js';
+import UserPage from './Pages/UserPage.js';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -22,19 +23,20 @@ function App() {
     return (
       <div>
         <header className='headerLayout'>
-          <Header />
+          <Header user={user}/>
         </header>
         <main>
           <div className='bodyContainerLayout'>
             <div className='bodyContentLayout'>
               <Routes>
-                  <Route path='/' element={<MainPage />}/> 
-                  <Route path='/search' element={<SearchPage />} />
-                  <Route path='/search/:id' element={<ViewPage />} />
+                  <Route path='/' element={<MainPage user={user}/>}/> 
+                  <Route path='/user' element={<UserPage user={user}/>}/>
+                  <Route path='/search' element={<SearchPage user={user}/>} />
+                  <Route path='/search/:id' element={<ViewPage user={user}/>} />
               </Routes>
             </div>
             <div className='userListsLayout'>
-              <UserLists />
+              <UserLists user={user}/>
             </div>
           </div>
         </main>
