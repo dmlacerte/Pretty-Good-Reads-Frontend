@@ -1,8 +1,8 @@
-import styles from './View.module.css';
+import styles from './css/View.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function ViewPage() {
+function ViewPage(props) {
     let { id } = useParams();
     const [book, setBook] = useState(null);
     const [bookReviews, setBookReviews] = useState(null);

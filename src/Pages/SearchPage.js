@@ -1,8 +1,8 @@
-import styles from './Search.module.css';
+import styles from './css/Search.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function SearchPage() {
+function SearchPage(props) {
     let { searchFields } = useParams();
     const [bookResults, setBookResults] = useState(null);
 
