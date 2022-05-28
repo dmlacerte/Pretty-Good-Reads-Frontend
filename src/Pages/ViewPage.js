@@ -17,7 +17,7 @@ function ViewPage(props) {
         : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
         .then(res => {
             console.log(res)
-            setBook(res)
+            setBook(res.data)
         })
         .catch(console.error)
     }
@@ -82,7 +82,7 @@ function ViewPage(props) {
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
-                    <p className={styles.bookAuthor}>{book.volumeInfo.authors}</p>
+                    <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
                     <div className={styles.bookDetails}>
                         <p>{book.volumeInfo.publishedDate}</p>
                         <p>{book.volumeInfo.pageCount} pages</p>
