@@ -47,8 +47,8 @@ function UserLists(props) {
                 {displayListBooks[displayList].map((book, index) => {
                     return (
                         <div key={index} className={styles.resultContainer}>
-                            <h3>{book.title}</h3>
-                            <h4>{book.authors}</h4>
+                            <h3>{book.volumeInfo.title}</h3>
+                            <h4>{book.volumeInfo.authors}</h4>
                         </div>
                     )
                 })}

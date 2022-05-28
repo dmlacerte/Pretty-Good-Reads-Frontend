@@ -1,6 +1,6 @@
 import styles from './css/Search.module.css';
 import React, { useState, useEffect } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 const axios = require('axios')
 
 function SearchPage(props) {
@@ -19,12 +19,12 @@ function SearchPage(props) {
         axios.get(searchURI)
         .then(res => {
             setTotal(res.data.totalItems)
-            let books = []
-            for (let i = 0; i < res.data.items.length; i++) {
-                books.push(res.data.items[i].volumeInfo)
-            }
-            console.log(books)
-            setBookResults(books)
+            // let books = []
+            // for (let i = 0; i < res.data.items.length; i++) {
+            //     books.push(res.data.items[i].volumeInfo)
+            // }
+            console.log(res.data.items)
+            setBookResults(res.data.items)
         })
         .catch(console.error)
     }
@@ -41,10 +41,12 @@ function SearchPage(props) {
             <h2 className={styles.title}>Search Results</h2>
             <div className={styles.resultsContainer}>
                 {bookResults.map((book, idx) => (
-                    <div className={styles.resultContainer} key={idx}>
-                        <h3>Title: {book.title}</h3>
-                        {book.authors.length === 1 ? <h4>Author: {book.authors[0]}</h4> : <h4>Authors: {book.authors}</h4>}
-                    </div>
+                    <Link to={`/book/${book.id}`}>
+                        <div className={styles.resultContainer} key={idx}>
+                            <h3>Title: {book.volumeInfo.title}</h3>
+                            {book.volumeInfo.authors.length === 1 ? <h4>Author: {book.volumeInfo.authors[0]}</h4> : <h4>Authors: {book.volumeInfo.authors}</h4>}
+                        </div>
+                    </Link>
                 ))}
             </div>
             <p>Total Results: {total}</p>

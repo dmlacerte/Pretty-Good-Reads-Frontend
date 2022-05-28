@@ -1,36 +1,75 @@
 import styles from './css/View.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+const axios = require('axios')
 
 function ViewPage(props) {
     let { id } = useParams();
     const [book, setBook] = useState(null);
     const [bookReviews, setBookReviews] = useState(null);
 
+    function createBook() {
+        console.log(`creating`)
+        const searchURI = `https://www.googleapis.com/books/v1/volumes/${id}?key=${process.env.REACT_APP_API_KEY}`
+        axios.get(searchURI)
+        .then(res => axios.post(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
+        : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
+        .then(res => {
+            console.log(res)
+            setBook(res)
+        })
+        .catch(console.error)
+    }
+
     function updateBook() {
         //use id to fetch book data from api
+        
+        axios.get(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
+        : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
+        .then(res => {
+            console.log(res)
+            if (res.data) setBook(res.data[0])
+            else createBook()
+        })
+        .catch(console.error)
     }
 
     function updateBookReviews() {
         //use id to fetch book reviews from database
         //universal id we can use b/w api and database?
+        if (!book) return
+
+        axios.get(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
+        : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
+        .then(ratings => {
+            console.log(ratings)
+            setBookReviews(ratings.data)
+        })
+        .catch(console.error)
     }
 
     useEffect(() => {
-        updateBook();
-        updateBookReviews();
+        updateBook()
     }, []);
 
+    //run this when book is updated
+    useEffect(() => {
+        updateBookReviews()
+    }, [book]);
+
     //should we split reviews into it's own component? 
-    // if (!book || !bookReviews) {
-    //     return <h1>Loading...</h1>
-    // }
+    if (!book || !bookReviews) {
+        return <h1>Loading...</h1>
+    }
      
     return (
         <>
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
-                    <img src="https://books.google.com/books/content?id=zaRoX10_UsMC&printsec=frontcover&img=1&zoom=5&edge=curl&imgtk=AFLRE70p4aEYWwkEjGAEdHjL0J2NK3sZQO8GN_Lt3End2TA6fTDWXcJ6qljQE4U63px1hz-hIDCaKBWKiKiN8CF8iZYrrtAPdLGGnrqEflQb2zclZW4c5dAvivjNeRt6xUk16TKJpmqb&source=gbs_api" />
+                    <img src={book.volumeInfo.imageLinks.thumbnail} />
                     <form action="#">
                         <select name="bookList" id="bookList">
                             <option value="notRead">Not Read</option>
@@ -42,22 +81,22 @@ function ViewPage(props) {
                     </form>
                 </div>
                 <div className={styles.bookContentRight}>
-                    <p className={styles.bookTitle}>Title</p>
-                    <p className={styles.bookAuthor}>Author</p>
+                    <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
+                    <p className={styles.bookAuthor}>{book.volumeInfo.authors}</p>
                     <div className={styles.bookDetails}>
-                        <p>Published Date</p>
-                        <p>Page Count</p>
+                        <p>{book.volumeInfo.publishedDate}</p>
+                        <p>{book.volumeInfo.pageCount} pages</p>
                     </div>
-                    <p className={styles.bookDescription}>A good book description is a detailed, descriptive copy that is good for public display, used for your book marketing, book discovery, and for sales purposes. It helps potential buyers find and understand your book. It's your pitch. Your chance to get people interested.</p>
+                    <div className={styles.bookDescription}>{book.volumeInfo.description}</div>
                 </div>
             </div>
             <div className={styles.reviewsContainer}>
                 <h1>Community Ratings</h1>
                 <p className={styles.bookRatingUser}>My Rating</p>
                 <div>
-                    <div>Rating #1</div>
-                    <div>Rating #2</div>
-                    <div>Rating #3</div>
+                    {bookReviews.map((review, idx) => (
+                        <div key={idx}>Rating: {review.score}</div>
+                    ))}
                 </div>
             </div>
         </>
