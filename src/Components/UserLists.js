@@ -7,14 +7,18 @@ function UserLists(props) {
     const [displayListBooks, setDisplayListBooks] = useState(null);
 
     function updateUser() {
-        fetch(`http://localhost:4000/userBooks/${props.user.user.googleId}`)
+        fetch(process.env.NODE_ENV === 'production' 
+        ? process.env.REACT_APP_BACK_END_PROD + `/userBooks/${props.user.user.googleId}`
+        : process.env.REACT_APP_BACK_END_DEV +`/userBooks/${props.user.user.googleId}`)
             .then(res => res.json())
             .then(res => setUser(res))
             .catch(console.error);
     }
 
     function updateBooks() {
-        fetch(`http://localhost:4000/book/user/${props.user.user.googleId}`)
+        fetch(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${props.user.user.googleId}`
+        : process.env.REACT_APP_BACK_END_DEV + `/book/user/${props.user.user.googleId}`)
             .then(res => res.json())
             .then(res => setDisplayListBooks(res))
             .catch(console.error);
