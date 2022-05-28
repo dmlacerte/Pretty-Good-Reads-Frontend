@@ -32,7 +32,7 @@ function App() {
                   <Route path='/' element={<MainPage user={user}/>}/> 
                   <Route path='/user' element={<UserPage user={user}/>}/>
                   <Route path='/search' element={<SearchPage user={user}/>} />
-                  <Route path='/search/:id' element={<ViewPage user={user}/>} />
+                  <Route path='/book/:id' element={<ViewPage user={user}/>} />
               </Routes>
             </div>
             <div className='userListsLayout'>
