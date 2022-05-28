@@ -10,9 +10,13 @@ function SearchPage(props) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     function updateBookResults() {
-        axios.get(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + `/book/search/title/${searchParams.get('title')}/${index}`
-        : process.env.REACT_APP_BACK_END_DEV + `/book/search/title/${searchParams.get('title')}/${index}`)
+        const searchURI = `https://www.googleapis.com/books/v1/volumes?q=`+
+        (searchParams.get('title') ? `${searchParams.get('title')}` : ``)+
+        (searchParams.get('author') ? `+inauthor:${searchParams.get('author')}` : ``)+
+        (searchParams.get('genre') ? `+subject:${searchParams.get('genre')}` : ``)+
+        `&startIndex=${index}&key=${process.env.REACT_APP_API_KEY}`
+        console.log(searchURI)
+        axios.get(searchURI)
         .then(res => {
             setTotal(res.data.totalItems)
             let books = []
