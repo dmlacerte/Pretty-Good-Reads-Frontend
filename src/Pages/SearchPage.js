@@ -44,7 +44,7 @@ function SearchPage(props) {
                     <Link to={`/book/${book.id}`}>
                         <div className={styles.resultContainer} key={idx}>
                             <h3>Title: {book.volumeInfo.title}</h3>
-                            {book.volumeInfo.authors.length === 1 ? <h4>Author: {book.volumeInfo.authors[0]}</h4> : <h4>Authors: {book.volumeInfo.authors}</h4>}
+                            {(!book.volumeInfo.authors) ? null : (book.volumeInfo.authors.length === 1 ? <h4>Author: {book.volumeInfo.authors[0]}</h4> : <h4>Authors: {book.volumeInfo.authors.join(', ')}</h4>)}
                         </div>
                     </Link>
                 ))}
