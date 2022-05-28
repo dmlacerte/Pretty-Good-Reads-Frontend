@@ -14,7 +14,7 @@ function SearchPage(props) {
         (searchParams.get('title') ? `${searchParams.get('title')}` : ``)+
         (searchParams.get('author') ? `+inauthor:${searchParams.get('author')}` : ``)+
         (searchParams.get('genre') ? `+subject:${searchParams.get('genre')}` : ``)+
-        `&startIndex=${index}&key=${process.env.REACT_APP_API_KEY}`
+        `&startIndex=${index}&printType=books&key=${process.env.REACT_APP_API_KEY}`
         console.log(searchURI)
         axios.get(searchURI)
         .then(res => {
@@ -32,12 +32,10 @@ function SearchPage(props) {
     useEffect(() => {
         updateBookResults();
     }, [index]);
-
-    // if (!bookResults) {
-    //     return <h1>Loading...</h1>
-    // }
+    
 
     if (!bookResults) return <h3>Loading</h3>
+
     return (
         <>
             <h2 className={styles.title}>Search Results</h2>
@@ -50,6 +48,8 @@ function SearchPage(props) {
                 ))}
             </div>
             <p>Total Results: {total}</p>
+            {(index > 9) ? <button onClick={() => setIndex(index - 10)}>Previous Page</button> : <button disabled>Previous Page</button>}
+            <button onClick={() => setIndex(index + 10)}>Next Page</button>
         </>
     )
 }
