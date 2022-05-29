@@ -1,9 +1,12 @@
 import styles from './css/User.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 
-function UserPage(props) {
+function UserPage() {
+    const { user } = useContext(UserContext);
+
     return (
-        <h1>{props.user.user.name}</h1>
+        <h1>{user.name}</h1>
     )
 }
 

@@ -1,24 +1,26 @@
 import styles from './css/UserLists.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 
 function UserLists(props) {
-    const [user, setUser] = useState(null);
+    const { user } = useContext(UserContext);
+
     const [displayList, setDisplayList] = useState("reading");
     const [displayListBooks, setDisplayListBooks] = useState(null);
 
-    function updateUser() {
-        fetch(process.env.NODE_ENV === 'production' 
-        ? process.env.REACT_APP_BACK_END_PROD + `/userBooks/${props.user.user.googleId}`
-        : process.env.REACT_APP_BACK_END_DEV +`/userBooks/${props.user.user.googleId}`)
-            .then(res => res.json())
-            .then(res => setUser(res))
-            .catch(console.error);
-    }
+    // function updateUser() {
+    //     fetch(process.env.NODE_ENV === 'production' 
+    //     ? process.env.REACT_APP_BACK_END_PROD + `/userBooks/${props.user.user.googleId}`
+    //     : process.env.REACT_APP_BACK_END_DEV +`/userBooks/${props.user.user.googleId}`)
+    //         .then(res => res.json())
+    //         .then(res => setUser(res))
+    //         .catch(console.error);
+    // }
 
     function updateBooks() {
         fetch(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${props.user.user.googleId}`
-        : process.env.REACT_APP_BACK_END_DEV + `/book/user/${props.user.user.googleId}`)
+        ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${user.googleId}`
+        : process.env.REACT_APP_BACK_END_DEV + `/book/user/${user.googleId}`)
             .then(res => res.json())
             .then(res => setDisplayListBooks(res))
             .catch(console.error);
@@ -30,7 +32,7 @@ function UserLists(props) {
     }
 
     useEffect(() => {
-        updateUser();
+        // updateUser();
         updateBooks();
     }, []);
 

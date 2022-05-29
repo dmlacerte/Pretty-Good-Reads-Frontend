@@ -1,7 +1,7 @@
 import styles from './css/Main.module.css';
 import React, { useState, useEffect } from 'react';
 
-function MainPage(props) {
+function MainPage() {
     //should we fetch # TBR books for user and use that to select an id for select random button?
     
     return (
