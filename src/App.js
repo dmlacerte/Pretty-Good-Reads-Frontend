@@ -8,41 +8,52 @@ import UserLists from './Components/UserLists.js';
 import LoginPage from './Pages/LoginPage.js';
 import UserPage from './Pages/UserPage.js';
 import { Routes, Route } from 'react-router-dom';
+import UserContext from './UserContext';
+import axios from 'axios';
 
 function App() {
 
+  const [authenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  if (!user) {
-    return (
-      <div>
-        <LoginPage user={user} setUser={setUser} />
-      </div>
-    )
-  } else {
-    return (
-      <div>
+  useEffect(() => {
+    axios.get(process.env.NODE_ENV === 'production'
+      ? process.env.REACT_APP_BACK_END_PROD + "/user/me"
+      : process.env.REACT_APP_BACK_END_DEV + "/user/me", {
+      withCredentials: true
+    }).then(response => {
+      const {authenticated, user} = response.data;
+      setAuthenticated(authenticated);
+      setUser(user);
+    })
+  }, [])
+
+  return (
+    <UserContext.Provider value={{ authenticated, setAuthenticated, user, setUser }}>
+      {authenticated ? <div>
         <header className='headerLayout'>
-          <Header user={user}/>
+          <Header user={user} />
         </header>
         <main>
           <div className='bodyContainerLayout'>
             <div className='bodyContentLayout'>
               <Routes>
-                  <Route path='/' element={<MainPage user={user}/>}/> 
-                  <Route path='/user' element={<UserPage user={user}/>}/>
-                  <Route path='/search' element={<SearchPage user={user}/>} />
-                  <Route path='/book/:id' element={<ViewPage user={user}/>} />
+                <Route path='/' element={<MainPage user={user} />} />
+                <Route path='/user' element={<UserPage user={user} />} />
+                <Route path='/search' element={<SearchPage user={user} />} />
+                <Route path='/book/:id' element={<ViewPage user={user} />} />
               </Routes>
             </div>
             <div className='userListsLayout'>
-              <UserLists user={user}/>
+              <UserLists user={user} />
             </div>
           </div>
         </main>
-      </div>
-    );
-    }
+      </div> : <div>
+        <LoginPage />
+      </div>}
+    </UserContext.Provider>
+  );
 }
 
 export default App;

@@ -12,28 +12,28 @@ function ViewPage(props) {
         console.log(`creating`)
         const searchURI = `https://www.googleapis.com/books/v1/volumes/${id}?key=${process.env.REACT_APP_API_KEY}`
         axios.get(searchURI)
-        .then(res => axios.post(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
-        : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
-        .then(res => {
-            console.log(res)
-            setBook(res.data)
-        })
-        .catch(console.error)
+            .then(res => axios.post(process.env.NODE_ENV === 'production'
+                ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
+                : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
+            .then(res => {
+                console.log(res)
+                setBook(res.data)
+            })
+            .catch(console.error)
     }
 
     function updateBook() {
         //use id to fetch book data from api
-        
+
         axios.get(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
-        : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
-        .then(res => {
-            console.log(res)
-            if (res.data) setBook(res.data[0])
-            else createBook()
-        })
-        .catch(console.error)
+            ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
+            : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
+            .then(res => {
+                console.log(res)
+                if (res.data) setBook(res.data[0])
+                else createBook()
+            })
+            .catch(console.error)
     }
 
     function updateBookReviews() {
@@ -42,13 +42,13 @@ function ViewPage(props) {
         if (!book) return
 
         axios.get(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
-        : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
-        .then(ratings => {
-            console.log(ratings)
-            setBookReviews(ratings.data)
-        })
-        .catch(console.error)
+            ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
+            : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
+            .then(ratings => {
+                console.log(ratings)
+                setBookReviews(ratings.data)
+            })
+            .catch(console.error)
     }
 
     useEffect(() => {
@@ -64,7 +64,7 @@ function ViewPage(props) {
     if (!book || !bookReviews) {
         return <h1>Loading...</h1>
     }
-     
+
     return (
         <>
             <div className={styles.bookContainer}>

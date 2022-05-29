@@ -1,25 +1,29 @@
 import styles from './css/Login.module.css';
 import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
+import { useContext } from 'react';
+import UserContext from '../UserContext';
 
-function LoginPage(props) {
+function LoginPage() {
+    const { setAuthenticated, setUser } = useContext(UserContext);
+
     const handleLogin = async googleData => {
-        const res = await fetch(process.env.NODE_ENV === 'production'
-        ? process.env.REACT_APP_BACK_END_PROD + "/api/v1/auth/google"
-        : process.env.REACT_APP_BACK_END_DEV + "/api/v1/auth/google", {
-            method: "POST",
-            body: JSON.stringify({
-            token: googleData.credential
-          }),
-          headers: {
-            "Content-Type": "application/json"
-          }
+        axios.post(process.env.NODE_ENV === 'production'
+            ? process.env.REACT_APP_BACK_END_PROD + "/api/v1/auth/google"
+            : process.env.REACT_APP_BACK_END_DEV + "/api/v1/auth/google", {
+            token: googleData.credential,
+            credential: true
+        }, {
+            withCredentials: true, 
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            setUser(response.data);
+            setAuthenticated(true);
         })
-        
-        const data = await res.json();
-        props.setUser(data);
-        console.log(data);
     }
-    
+
     return (
         <div className={styles.loginPage}>
             <h1 className={styles.title}>Pretty Good Reads</h1>
@@ -33,7 +37,7 @@ function LoginPage(props) {
                         onFailure={handleLogin}
                         cookiePolicy={'single_host_origin'}
                     />
-                    <br/>
+                    <br />
                     <a className={styles.signIn}>Sign in above via your Google Account</a>
                 </div>
                 <div className={styles.rightContainer}>
