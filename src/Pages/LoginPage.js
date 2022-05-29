@@ -8,6 +8,7 @@ function LoginPage() {
     const { setAuthenticated, setUser } = useContext(UserContext);
 
     const handleLogin = async googleData => {
+        console.log(`GOOGLE DATA: ${JSON.stringify(googleData)}`)
         axios.post(process.env.NODE_ENV === 'production'
             ? process.env.REACT_APP_BACK_END_PROD + "/api/v1/auth/google"
             : process.env.REACT_APP_BACK_END_DEV + "/api/v1/auth/google", {
@@ -19,7 +20,7 @@ function LoginPage() {
                 "Content-Type": "application/json"
             }
         }).then(response => {
-            setUser(response.data);
+            setUser(response.data.user);
             setAuthenticated(true);
         })
     }
