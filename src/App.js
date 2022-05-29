@@ -30,7 +30,8 @@ function App() {
 
   return (
     <UserContext.Provider value={{ authenticated, setAuthenticated, user, setUser }}>
-      {authenticated ? <div>
+      {authenticated 
+      ? <div>
         <header className='headerLayout'>
           <Header user={user} />
         </header>
@@ -45,11 +46,12 @@ function App() {
               </Routes>
             </div>
             <div className='userListsLayout'>
-              <UserLists user={user} />
+              <UserLists />
             </div>
           </div>
         </main>
-      </div> : <div>
+      </div> 
+      : <div>
         <LoginPage />
       </div>}
     </UserContext.Provider>
