@@ -1,3 +1,4 @@
+import styles from './css/Rating.module.css'
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -30,14 +31,27 @@ const Rating = ({user, book}) => {
 
   return (
     <div className='starRating'>
-        <span className='star' onClick={() => setStarRating(1)}>&#9733;</span>
+        {[...Array(5)].map((star, idx) => {
+            idx += 1
+            return (
+                <span 
+                        key ={idx}
+                        className={idx <= starRating ? styles.on : styles.off}
+                        onClick={() => setStarRating(idx)}
+                    >
+                        &#9733;
+                </span>
+            )
+        })}
+        {/* <span className={starRating === null ? 'off' : index <= starRating} onClick={() => setStarRating(1)}>&#9733;</span>
         <span className='star' onClick={() => setStarRating(2)}>&#9733;</span>
         <span className='star' onClick={() => setStarRating(3)}>&#9733;</span>
         <span className='star' onClick={() => setStarRating(4)}>&#9733;</span>
-        <span className='star' onClick={() => setStarRating(5)}>&#9733;</span>
+        <span className='star' onClick={() => setStarRating(5)}>&#9733;</span> */}
     </div>  
   )
 }
 
+//took star display format from "https://dev.to/michaelburrows/create-a-custom-react-star-rating-component-5o6"
 
 export default Rating
