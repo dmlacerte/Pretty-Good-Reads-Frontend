@@ -2,6 +2,7 @@ import styles from './css/View.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
+import AddToList from '../Components/AddToList';
 const axios = require('axios')
 
 function ViewPage({user}) {
@@ -51,6 +52,11 @@ function ViewPage({user}) {
             .catch(console.error)
     }
 
+    function handleSubmit(event) {
+        event.preventDefault()
+        
+    }
+
     useEffect(() => {
         updateBook()
     }, []);
@@ -70,15 +76,7 @@ function ViewPage({user}) {
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
-                    <form action="#">
-                        <select name="bookList" id="bookList">
-                            <option value="notRead">Not Read</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="reading">Reading</option>
-                            <option value="haveRead">Have Read</option>
-                        </select>
-                        <input type="submit" value="Update" />
-                    </form>
+                    <AddToList user={user} book={book}/>
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
