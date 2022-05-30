@@ -6,6 +6,10 @@ const Rating = ({user, book}) => {
     const [starRating, setStarRating] = useState(null)
 
     useEffect(() => {
+        
+    }, [user])
+
+    useEffect(() => {
         if (!starRating) return
 
         axios.get(process.env.NODE_ENV === 'production'
