@@ -1,6 +1,7 @@
 import styles from './css/UserLists.module.css';
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
+import { Link } from 'react-router-dom';
 
 function UserLists() {
     const { user } = useContext(UserContext);
@@ -9,7 +10,6 @@ function UserLists() {
     const [displayListBooks, setDisplayListBooks] = useState(null);
 
     function updateBooks() {
-        console.log(`USER: ${JSON.stringify(user)}`);
         fetch(process.env.NODE_ENV === 'production'
         ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${user.googleId}`
         : process.env.REACT_APP_BACK_END_DEV + `/book/user/${user.googleId}`)
@@ -51,18 +51,20 @@ function UserLists() {
             <div className={styles.resultsContainer}>
                 {displayListBooks[displayList].map((book, index) => {
                     return (
-                        <div key={index} className={styles.resultContainer}>
-                            <div>
-                                <img src= {displayList === "reading" 
-                                    ? "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62859-open-book-icon.png" 
-                                    : "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62858-closed-book-icon.png"
-                                }/>
+                        <Link to={`/book/${book.id}`} onClick={() => this.forceUpdate} key={index}>
+                            <div className={styles.resultContainer}>
+                                <div>
+                                    <img src= {displayList === "reading" 
+                                        ? "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62859-open-book-icon.png" 
+                                        : "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62858-closed-book-icon.png"
+                                    }/>
+                                </div>
+                                <div>
+                                    <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
+                                    <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
-                                <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
-                            </div>
-                        </div>
+                        </Link>
                     )
                 })}
             </div>
