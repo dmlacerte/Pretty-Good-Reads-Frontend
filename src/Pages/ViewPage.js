@@ -1,9 +1,10 @@
 import styles from './css/View.module.css';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Rating from '../Components/Rating';
 const axios = require('axios')
 
-function ViewPage(props) {
+function ViewPage({user}) {
     let { id } = useParams();
     const [book, setBook] = useState(null);
     const [bookReviews, setBookReviews] = useState(null);
@@ -93,6 +94,7 @@ function ViewPage(props) {
             <div className={styles.reviewsContainer}>
                 <h1>Community Ratings</h1>
                 <p className={styles.bookRatingUser}>My Rating</p>
+                <Rating user={user} book={book}/>
                 <div>
                     {bookReviews.map((review, idx) => (
                         <div key={idx}>Rating: {review.score}</div>
