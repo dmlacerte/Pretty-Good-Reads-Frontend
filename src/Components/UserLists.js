@@ -34,18 +34,34 @@ function UserLists() {
     return (
         <div>
             <div className={styles.listOptions}>
-                <p className={styles.tabOne} id="reading" onClick={updateDisplayList}>Reading</p>
-                <p className={styles.tabTwo} id="wishlist" onClick={updateDisplayList}>TBR</p>
-                <p className={styles.tabThree} id="finished" onClick={updateDisplayList}>Past Reads</p>
+                <p className={displayList === "reading" ? `${`${styles.tabOne} ${styles.selected}`}` : `${styles.tabOne}`}
+                    id="reading" onClick={updateDisplayList}>
+                    Reading
+                </p>
+                <p className={displayList === "wishlist" ? `${`${styles.tabTwo} ${styles.selected}`}` : `${styles.tabTwo}`} 
+                    id="wishlist" onClick={updateDisplayList}>
+                    TBR
+                </p>
+                <p className={displayList === "finished" ? `${`${styles.tabThree} ${styles.selected}`}` : `${styles.tabThree}`}
+                    id="finished" onClick={updateDisplayList}>
+                    Past Reads
+                </p>
             </div>
             {/* To add filters, below likely will be a second component */}
             <div className={styles.resultsContainer}>
-                {console.log(displayListBooks)}
                 {displayListBooks[displayList].map((book, index) => {
                     return (
                         <div key={index} className={styles.resultContainer}>
-                            <h3>{book.volumeInfo.title}</h3>
-                            <h4>{book.volumeInfo.authors}</h4>
+                            <div>
+                                <img src= {displayList === "reading" 
+                                    ? "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62859-open-book-icon.png" 
+                                    : "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62858-closed-book-icon.png"
+                                }/>
+                            </div>
+                            <div>
+                                <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
+                                <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
+                            </div>
                         </div>
                     )
                 })}

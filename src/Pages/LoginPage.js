@@ -1,4 +1,5 @@
 import styles from './css/Login.module.css';
+import React, { useEffect } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useContext } from 'react';
@@ -6,6 +7,10 @@ import UserContext from '../UserContext';
 
 function LoginPage() {
     const { setAuthenticated, setUser } = useContext(UserContext);
+
+    useEffect(() => {
+        document.body.style.backgroundColor = 'rgb(255, 225, 220)';
+    }, []);
 
     const handleLogin = async googleData => {
         console.log(`GOOGLE DATA: ${JSON.stringify(googleData)}`)
@@ -42,7 +47,8 @@ function LoginPage() {
                     <a className={styles.signIn}>Sign in above via your Google Account</a>
                 </div>
                 <div className={styles.rightContainer}>
-                    <img className={styles.gif} src='https://media1.giphy.com/media/1BWKyYQX2K55GwiUPc/giphy.gif?cid=ecf05e47eiw9b5x072c8bk6ivovo5jj1nb256ju5dn6jr4pr&rid=giphy.gif&ct=g' />
+                    {/* IMG Source: https://media1.giphy.com/media/1BWKyYQX2K55GwiUPc/giphy.gif?cid=ecf05e47eiw9b5x072c8bk6ivovo5jj1nb256ju5dn6jr4pr&rid=giphy.gif&ct=g */}
+                    <img className={styles.gif} src='/cozy.gif' />
                 </div>
             </div>
         </div>

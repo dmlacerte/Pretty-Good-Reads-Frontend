@@ -8,6 +8,7 @@ function MainPage() {
         <>
             <div className={styles.container}>
                 <h2 className={styles.title}>What Are You Reading Today?</h2>
+                <img className={styles.img} src='https://media3.giphy.com/media/JrXc72Pz2Ib1dBK13T/giphy.gif?cid=ecf05e47wg70oq386jw522c5yz919j3tv82zq7tvlxselv2m&rid=giphy.gif&ct=g'/>
                 <form action="/search" method="GET">
                     <div className={styles.searchFields}>
                         <input type="text" id="title" name="title" placeholder="Title"/>
