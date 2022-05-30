@@ -6,7 +6,18 @@ const Rating = ({user, book}) => {
     const [starRating, setStarRating] = useState(null)
 
     useEffect(() => {
-        
+        axios.get(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
+        : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}`)
+        .then(res => {
+
+        })
+
+
+        console.log(user)
+        const staticRating = user.ratings.find(rating => rating.book === book)
+        if (!staticRating) return
+        else setStarRating(staticRating.score)
     }, [user])
 
     useEffect(() => {
@@ -47,11 +58,6 @@ const Rating = ({user, book}) => {
                 </span>
             )
         })}
-        {/* <span className={starRating === null ? 'off' : index <= starRating} onClick={() => setStarRating(1)}>&#9733;</span>
-        <span className='star' onClick={() => setStarRating(2)}>&#9733;</span>
-        <span className='star' onClick={() => setStarRating(3)}>&#9733;</span>
-        <span className='star' onClick={() => setStarRating(4)}>&#9733;</span>
-        <span className='star' onClick={() => setStarRating(5)}>&#9733;</span> */}
     </div>  
   )
 }
