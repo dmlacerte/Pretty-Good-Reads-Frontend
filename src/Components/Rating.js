@@ -10,14 +10,10 @@ const Rating = ({user, book}) => {
         ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
         : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}`)
         .then(res => {
-
+            console.log(res.data)
+            if(!res.data) return
+            else setStarRating(res.data.score)
         })
-
-
-        console.log(user)
-        const staticRating = user.ratings.find(rating => rating.book === book)
-        if (!staticRating) return
-        else setStarRating(staticRating.score)
     }, [user])
 
     useEffect(() => {
