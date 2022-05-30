@@ -44,8 +44,10 @@ function SearchPage(props) {
                     {bookResults.map((book, idx) => (
                         <Link to={`/book/${book.id}`}>
                             <div className={styles.resultContainer} key={idx}>
-                                <p>Title: {book.volumeInfo.title}</p>
-                                {(!book.volumeInfo.authors) ? null : (book.volumeInfo.authors.length === 1 ? <p>Author: {book.volumeInfo.authors[0]}</p> : <p>Authors: {book.volumeInfo.authors.join(', ')}</p>)}
+                                <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
+                                {(!book.volumeInfo.authors) ? null : (book.volumeInfo.authors.length === 1 ? <p className={styles.bookAuthor}><span className={styles.bookDetailCategory}>Author:</span> {book.volumeInfo.authors[0]}</p> : <p className={styles.bookAuthor}><span className={styles.bookDetailCategory}>Authors:</span> {book.volumeInfo.authors.join(', ')}</p>)}
+                                <p className={styles.bookDetailDivider}>|</p>
+                                <p className={styles.bookPublishedDate}><span className={styles.bookDetailCategory}>Published:</span> {book.volumeInfo.publishedDate} </p>
                             </div>
                         </Link>
                     ))}

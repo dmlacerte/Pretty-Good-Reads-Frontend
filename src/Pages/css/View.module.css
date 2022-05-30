@@ -1,5 +1,5 @@
 .bookContainer {
-    position: relative;
+    display: flex;
     justify-content: center;
     align-items: flex-start;
 }
@@ -15,7 +15,6 @@
 
 .bookContentRight {
     width: 70%;
-    position: absolute;
 }
 
 img {

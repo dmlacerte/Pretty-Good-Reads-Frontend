@@ -13,10 +13,9 @@ function LoginPage() {
     }, []);
 
     const handleLogin = async googleData => {
-        console.log(`GOOGLE DATA: ${JSON.stringify(googleData)}`)
         axios.post(process.env.NODE_ENV === 'production'
-            ? process.env.REACT_APP_BACK_END_PROD + "/api/v1/auth/google"
-            : process.env.REACT_APP_BACK_END_DEV + "/api/v1/auth/google", {
+            ? process.env.REACT_APP_BACK_END_PROD + "/user/login"
+            : process.env.REACT_APP_BACK_END_DEV + "/user/login", {
             token: googleData.credential,
             credential: true
         }, {

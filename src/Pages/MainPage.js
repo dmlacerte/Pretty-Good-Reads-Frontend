@@ -1,8 +1,21 @@
 import styles from './css/Main.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
-    //should we fetch # TBR books for user and use that to select an id for select random button?
+    const { user } = useContext(UserContext);
+    
+    const [randomBook, setRandomBook] = useState(null);
+
+    function pickRandomBook() {
+        let randomIndex = Math.floor(Math.random() * (user.wishlist.length));
+        setRandomBook(user.wishlist[randomIndex]);
+    }
+
+    useEffect(() => {
+        pickRandomBook();
+    }, [])
     
     return (
         <>
@@ -18,9 +31,9 @@ function MainPage() {
                     <button type="submit" name="submit" value="Search">Search For a New Book</button>
                 </form>
                 <p className={styles.or}>OR</p>
-                <form>
+                <Link to={`/book/${randomBook}`}>
                     <button type="submit">Select Random from TBR</button>
-                </form>
+                </Link>
             </div>
         </>
     )

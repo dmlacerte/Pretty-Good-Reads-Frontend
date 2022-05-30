@@ -25,7 +25,6 @@ function ViewPage({user}) {
 
     function updateBook() {
         //use id to fetch book data from api
-
         axios.get(process.env.NODE_ENV === 'production'
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
@@ -88,7 +87,7 @@ function ViewPage({user}) {
                         <p>{book.volumeInfo.publishedDate}</p>
                         <p>{book.volumeInfo.pageCount} pages</p>
                     </div>
-                    <div className={styles.bookDescription}>{book.volumeInfo.description}</div>
+                    <div className={styles.bookDescription} dangerouslySetInnerHTML={{ __html: book.volumeInfo.description }}></div>
                 </div>
             </div>
             <div className={styles.reviewsContainer}>
