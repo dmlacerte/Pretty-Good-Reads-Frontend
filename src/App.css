@@ -1,9 +1,9 @@
-body {
-  background-color: rgb(255, 225, 220);
-}
-
 * {
   font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: rgb(255, 225, 220);
 }
 
 .headerLayout {
@@ -17,10 +17,8 @@ body {
 .bodyContentLayout {
   display: inline-block;
   width: 67.5%;
-  padding: 1%;
+  padding: 0% 1% 1% 1%;
   margin: 0.25%;
-  overflow: scroll;
-  border: 1px solid black;
   height: 75vh;
 }
 
@@ -31,6 +29,5 @@ body {
   width: 32%;
   padding: 0% 1% 1% 1%;
   margin: 0.25%;
-  overflow: scroll;
   height: 75vh;
 }

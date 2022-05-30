@@ -37,22 +37,26 @@ function SearchPage(props) {
     if (!bookResults) return <h3>Loading</h3>
 
     return (
-        <>
-            <h2 className={styles.title}>Search Results</h2>
+        <div>
             <div className={styles.resultsContainer}>
-                {bookResults.map((book, idx) => (
-                    <Link to={`/book/${book.id}`}>
-                        <div className={styles.resultContainer} key={idx}>
-                            <h3>Title: {book.volumeInfo.title}</h3>
-                            {(!book.volumeInfo.authors) ? null : (book.volumeInfo.authors.length === 1 ? <h4>Author: {book.volumeInfo.authors[0]}</h4> : <h4>Authors: {book.volumeInfo.authors.join(', ')}</h4>)}
-                        </div>
-                    </Link>
-                ))}
+                <h2 className={styles.title}>Search Results</h2>
+                <div>
+                    {bookResults.map((book, idx) => (
+                        <Link to={`/book/${book.id}`}>
+                            <div className={styles.resultContainer} key={idx}>
+                                <p>Title: {book.volumeInfo.title}</p>
+                                {(!book.volumeInfo.authors) ? null : (book.volumeInfo.authors.length === 1 ? <p>Author: {book.volumeInfo.authors[0]}</p> : <p>Authors: {book.volumeInfo.authors.join(', ')}</p>)}
+                            </div>
+                        </Link>
+                    ))}
+                </div>
             </div>
-            <p>Total Results: {total}</p>
-            {(index > 9) ? <button onClick={() => setIndex(index - 10)}>Previous Page</button> : <button disabled>Previous Page</button>}
-            <button onClick={() => setIndex(index + 10)}>Next Page</button>
-        </>
+            <div className={styles.pageButtons}>
+                <p>Total Results: {total}</p>
+                {(index > 9) ? <button onClick={() => setIndex(index - 10)}>Previous Page</button> : <button disabled>Previous Page</button>}
+                <button onClick={() => setIndex(index + 10)}>Next Page</button>
+            </div>
+        </div>
     )
 }
 
