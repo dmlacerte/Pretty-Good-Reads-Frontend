@@ -1,0 +1,12 @@
+span {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.on {
+    color: #000
+}
+
+.off {
+    color: rgb(132, 132, 132);
+}

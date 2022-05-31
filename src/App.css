@@ -1,0 +1,33 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background-color: rgb(255, 225, 220);
+}
+
+.headerLayout {
+  height: 18vh;
+}
+
+.bodyContainerLayout {
+  position: relative;
+}
+
+.bodyContentLayout {
+  display: inline-block;
+  width: 67.5%;
+  padding: 0% 1% 1% 1%;
+  margin: 0.25%;
+  height: 75vh;
+}
+
+.userListsLayout {
+  position: absolute;
+  top: 0;
+  display: inline-block;
+  width: 32%;
+  padding: 0% 1% 1% 1%;
+  margin: 0.25%;
+  height: 75vh;
+}

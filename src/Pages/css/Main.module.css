@@ -1,0 +1,37 @@
+.container {
+    text-align: center;
+}
+
+.title {
+    margin-top: 100px;
+    font-size: 30px;
+    color: rgba(165, 99, 99, 0.892);
+    font-style: italic;
+    font-weight: 500;
+}
+
+.img {
+    max-height: 15vh;
+    width: auto;
+    margin: 40px;
+}
+
+.searchFields input {
+    margin: 5px;
+}
+
+.or {
+    margin: 30px;
+    font-size: 20px;
+    color: rgba(165, 99, 99, 0.892);
+}
+
+.button {
+    margin: 5px;
+    font-size: 15px;
+    font-family: 'Bad Script', cursive;
+    background-color: antiquewhite; 
+    border: 1px solid rgba(165, 99, 99, 0.892);
+    cursor: pointer;
+    padding: 5px 15px;
+}

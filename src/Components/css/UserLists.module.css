@@ -1,0 +1,55 @@
+.listOptions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.tabOne, .tabTwo, .tabThree {
+    padding: 5px;
+    outline: 1px solid;
+    margin-top: 1px;
+    margin-left: 1px;
+    cursor: pointer;
+    font-weight: 400;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
+
+.tabOne {
+    background-color: rgb(222, 135, 147);
+}
+
+.tabTwo {
+    background-color: rgb(223, 161, 171);
+}
+
+.tabThree {
+    background-color: rgb(238, 195, 199);
+}
+
+.selected {
+    font-weight: 600;
+}
+
+.resultsContainer {
+    border: 1px solid rgba(165, 99, 99, 0.892);
+    background-color: antiquewhite; 
+    display: inline-block;
+    height: 75vh;
+    width: 100%;
+    overflow: scroll;
+}
+
+.resultContainer {
+    display: flex;
+    margin: 5px;
+    padding: 5px;
+}
+
+.bookTitle {
+    font-size: 16px;
+}
+
+.bookAuthor {
+    font-size: 14px;
+    color: rgb(11, 11, 11);
+}
