@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
+import RatingList from '../Components/RatingList';
 const axios = require('axios')
 
 function ViewPage({user}) {
     let { id } = useParams();
     const [book, setBook] = useState(null);
-    const [bookReviews, setBookReviews] = useState(null);
-
+    const [bookRatings, setBookRatings] = useState(null);
+    
     function createBook() {
         console.log(`creating`)
         const searchURI = `https://www.googleapis.com/books/v1/volumes/${id}?key=${process.env.REACT_APP_API_KEY}`
@@ -37,7 +38,7 @@ function ViewPage({user}) {
             .catch(console.error)
     }
 
-    function updateBookReviews() {
+    function updatebookRatings() {
         //use id to fetch book reviews from database
         //universal id we can use b/w api and database?
         if (!book) return
@@ -47,14 +48,9 @@ function ViewPage({user}) {
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
                 console.log(ratings)
-                setBookReviews(ratings.data)
+                setBookRatings(ratings.data)
             })
             .catch(console.error)
-    }
-
-    function handleSubmit(event) {
-        event.preventDefault()
-        
     }
 
     useEffect(() => {
@@ -63,11 +59,11 @@ function ViewPage({user}) {
 
     //run this when book is updated
     useEffect(() => {
-        updateBookReviews()
+        updatebookRatings()
     }, [book]);
 
     //should we split reviews into it's own component? 
-    if (!book || !bookReviews) {
+    if (!book || !bookRatings) {
         return <h1>Loading...</h1>
     }
 
@@ -93,9 +89,7 @@ function ViewPage({user}) {
                 <p className={styles.bookRatingUser}>My Rating</p>
                 <Rating user={user} book={book}/>
                 <div>
-                    {bookReviews.map((review, idx) => (
-                        <div key={idx}>Rating: {review.score}</div>
-                    ))}
+                    <RatingList bookRatings={bookRatings}/>
                 </div>
             </div>
         </>
