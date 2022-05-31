@@ -40,6 +40,7 @@ function App() {
             <div className='bodyContentLayout'>
               <Routes>
                 <Route path='/' element={<MainPage user={user} />} />
+                <Route path='/mybooks' element={<UserLists />} />
                 <Route path='/search' element={<SearchPage user={user} />} />
                 <Route path='/book/:id' element={<ViewPage user={user} />} />
               </Routes>

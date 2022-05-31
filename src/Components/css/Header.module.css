@@ -57,7 +57,37 @@
 	display: block;
 }
 
+.dropdownContainer:hover .dropdownOptions .myBooks {
+	display: none;
+}
+
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+/* Mobile Accessibility */
+@media only screen and (max-width: 600px) {
+
+.dropdownContainer:hover .dropdownOptions .myBooks {
+	display: block;
+}
+
+.pageTitle {
+	padding-top: 5vh;
+}
+
+}
+
+/* Tablet Accessibility */
+@media only screen and (min-width: 600px) and (max-width: 820px)  {
+
+.dropdownContainer:hover .dropdownOptions .myBooks {
+	display: block;
+}
+
+.pageTitle {
+	padding-top: 5vh;
+}
+
 }
