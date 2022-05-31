@@ -31,6 +31,7 @@ function Header() {
                 <div className={styles.dropdownContainer}>
                     <button className={styles.dropdownButton}>My Account</button>
                     <div className={styles.dropdownOptions}>
+                        <a className={styles.myBooks} href="/mybooks">My Books</a>
                         <a onClick={logOut} href="#">Logout</a>
                     </div>
                 </div>
