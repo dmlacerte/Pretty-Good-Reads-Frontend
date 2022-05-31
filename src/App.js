@@ -1,14 +1,14 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
 import Header from './Components/Header.js';
 import MainPage from './Pages/MainPage.js';
 import SearchPage from './Pages/SearchPage.js';
 import ViewPage from './Pages/ViewPage.js';
 import UserLists from './Components/UserLists.js';
 import LoginPage from './Pages/LoginPage.js';
-import UserPage from './Pages/UserPage.js';
+import UserContext from './UserContext.js';
+
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import UserContext from './UserContext';
 import axios from 'axios';
 
 function App() {
@@ -40,7 +40,6 @@ function App() {
             <div className='bodyContentLayout'>
               <Routes>
                 <Route path='/' element={<MainPage user={user} />} />
-                <Route path='/user' element={<UserPage user={user} />} />
                 <Route path='/search' element={<SearchPage user={user} />} />
                 <Route path='/book/:id' element={<ViewPage user={user} />} />
               </Routes>

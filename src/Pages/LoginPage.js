@@ -1,9 +1,8 @@
 import styles from './css/Login.module.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { useContext } from 'react';
-import UserContext from '../UserContext';
 
 function LoginPage() {
     const { setAuthenticated, setUser } = useContext(UserContext);

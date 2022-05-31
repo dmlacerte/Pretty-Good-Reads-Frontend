@@ -28,11 +28,11 @@ function MainPage() {
                         <input type="text" id="author" name="author" placeholder="Author"/>
                         <input type="text" id="genre" name="genre" placeholder="Genre"/>
                     </div>
-                    <button type="submit" name="submit" value="Search">Search For a New Book</button>
+                    <button className={styles.button} type="submit" name="submit" value="Search">Search For a New Book</button>
                 </form>
                 <p className={styles.or}>OR</p>
                 <Link to={`/book/${randomBook}`}>
-                    <button type="submit">Select Random from TBR</button>
+                    <button className={styles.button} type="submit">Select Random from TBR</button>
                 </Link>
             </div>
         </>

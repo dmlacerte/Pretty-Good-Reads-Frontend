@@ -55,8 +55,8 @@ function SearchPage(props) {
             </div>
             <div className={styles.pageButtons}>
                 <p>Total Results: {total}</p>
-                {(index > 9) ? <button onClick={() => setIndex(index - 10)}>Previous Page</button> : <button disabled>Previous Page</button>}
-                <button onClick={() => setIndex(index + 10)}>Next Page</button>
+                {(index > 9) ? <button className={styles.button} onClick={() => setIndex(index - 10)}>Previous Page</button> : <button className={styles.button} disabled>Previous Page</button>}
+                <button className={styles.button} onClick={() => setIndex(index + 10)}>Next Page</button>
             </div>
         </div>
     )

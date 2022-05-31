@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { useContext } from 'react';
-import UserContext from '../UserContext';
 import styles from './css/Header.module.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 
-function MainLayout(props) {
-    const { setAuthenticated, setUser } = useContext(UserContext);
+function Header() {
+    const { setAuthenticated, setUser, user } = useContext(UserContext);
 
     function logOut() {
         axios.get(process.env.NODE_ENV === 'production'
@@ -29,11 +28,15 @@ function MainLayout(props) {
                 ? process.env.REACT_APP_FRONT_END_PROD
                 : process.env.REACT_APP_FRONT_END_DEV}><h1 className={styles.pageTitle}> Pretty Good Reads</h1></a>
             <div className={styles.accountLink}>
-                <button onClick={logOut}>Logout</button>
-                {/* <a href='/user'>My Account</a> */}
+                <div className={styles.dropdownContainer}>
+                    <button className={styles.dropdownButton}>My Account</button>
+                    <div className={styles.dropdownOptions}>
+                        <a onClick={logOut} href="#">Logout</a>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
-export default MainLayout;
+export default Header;
