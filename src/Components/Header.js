@@ -4,7 +4,7 @@ import React, { useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
 
 function Header() {
-    const { setAuthenticated, setUser, user } = useContext(UserContext);
+    const { setAuthenticated, setUser } = useContext(UserContext);
 
     function logOut() {
         axios.get(process.env.NODE_ENV === 'production'
