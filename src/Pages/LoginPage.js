@@ -19,6 +19,8 @@ function LoginPage() {
             credential: true
         }, {
             withCredentials: true,
+            crossDomain: true,
+            xhrFields: { withCredentials: true },
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": process.env.NODE_ENV === 'production'
