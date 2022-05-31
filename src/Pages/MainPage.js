@@ -10,7 +10,7 @@ function MainPage() {
 
     function pickRandomBook() {
         let randomIndex = Math.floor(Math.random() * (user.wishlist.length));
-        setRandomBook(user.wishlist[randomIndex]);
+        setRandomBook(user.wishlist[randomIndex].id);
     }
 
     useEffect(() => {
