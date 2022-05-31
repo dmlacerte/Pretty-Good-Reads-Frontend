@@ -72,10 +72,10 @@ function ViewPage() {
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
-                    <AddToList/>
+                    <AddToList />
                     <div className={styles.myRatingContainer}>
                         <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating/>
+                        <Rating />
                     </div>
                 </div>
                 <div className={styles.bookContentRight}>
