@@ -33,7 +33,7 @@ function UserLists() {
     }
     
     return (
-        <div>
+        <div className={styles.listContainer}>
             <div className={styles.listOptions}>
                 <p className={displayList === "reading" ? `${`${styles.tabOne} ${styles.selected}`}` : `${styles.tabOne}`}
                     id="reading" onClick={updateDisplayList}>
