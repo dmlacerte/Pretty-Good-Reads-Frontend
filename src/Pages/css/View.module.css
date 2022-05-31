@@ -21,6 +21,12 @@ img {
     margin: 10px;
 }
 
+.myRatingContainer p {
+    font-size: 20px;
+    margin: 50px 0px 0px 0px;
+    padding: 0px;
+}
+
 .bookTitle {
     font-size: 25px;
 }
@@ -39,6 +45,8 @@ img {
 
 .bookDescription {
     margin: 5px 0px;
+    overflow: auto;
+    height: 40vh;
 }
 
 .bookRatingUser {
@@ -50,8 +58,28 @@ img {
     margin-top: 30px;
 }
 
+.reviewsHeader {
+    text-align: center;
+    color: rgb(100, 75, 75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewsList {
+    margin: 10px 5px;
+}
+
 /* Mobile Accessibility */
 @media only screen and (max-width: 600px) {
+
+.bookContentLeft {
+    width: 40%;
+}
+
+.bookContentRight {
+    width: 60%;
+}
 
 }
 

@@ -73,6 +73,10 @@ function ViewPage({user}) {
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
                     <AddToList user={user} book={book}/>
+                    <div className={styles.myRatingContainer}>
+                        <p className={styles.bookRatingUser}>My Rating</p>
+                        <Rating user={user} book={book}/>
+                    </div>
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
@@ -85,10 +89,12 @@ function ViewPage({user}) {
                 </div>
             </div>
             <div className={styles.reviewsContainer}>
-                <h1>Community Ratings</h1>
-                <p className={styles.bookRatingUser}>My Rating</p>
-                <Rating user={user} book={book}/>
-                <div>
+                <div className={styles.reviewsHeader}>
+                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                    <h1>Community Ratings</h1>
+                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                </div>
+                <div className={styles.reviewsList}>
                     <RatingList bookRatings={bookRatings}/>
                 </div>
             </div>
