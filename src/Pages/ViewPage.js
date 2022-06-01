@@ -62,7 +62,6 @@ function ViewPage({user}) {
         updatebookRatings()
     }, [book]);
 
-    //should we split reviews into it's own component? 
     if (!book || !bookRatings) {
         return <h1>Loading...</h1>
     }
