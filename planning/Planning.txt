@@ -1,0 +1,54 @@
+**Project Description**
+A semi-clone of Good Reads, where you can search for books and record books you're currently reading, 
+want to read, or have read. You can also rate books you've already read, and view ratings from other users.
+
+**Team Members & Roles**
+
+Deanna Lacerte:
+    - Responsible for Google oAuth front and backend setup, front end 
+      infrastructure, user list functionality, app layout design & 
+      implementation, media query responsiveness.   
+    - Project Manager: Drove project design and kept team aligned on priorities. 
+    - Git Master: Approved & merged pull requests and managed conflicts.
+
+Phil Zeise:
+    - Responsible for backend infrastructure & API, model design,
+      Google Books API integration, books search & display functionality, 
+      ratings component.
+    - Deploy Daemon: 
+
+**User Stories**
+- As a user, I want to be able to authenticate my account using Google.
+- As a user, I want to be able to search for new books by name, author, or genre, and view the details for that book.
+- As a user, I want to be able to classify books into different lists (want to read, currently reading, have read).
+- As a user, I want to be able to rate books that I have already read.
+
+**List of Models**
+Books:
+- Name: String
+- Author: String
+- Genre: String
+- Linked User Ratings
+
+Users:
+- Name: String
+- Profile Image: String
+- Google ID: String
+- Associated Books:
+    - Status: String (Currently Reading, Want To Read, Read)
+
+Ratings:
+- Book Name: String
+- User Name: String
+- Score: Number
+
+**MVP Goals**
+- [X] User can search for books, and book search results & details are populated using a books API.
+- [X] User can add, update, and remove books from their book listings (want to read, currently reading, have read).
+- [X] User can add a book rating. 
+
+**Stretch Goals**
+- [X] Have a user authentication page where a user is authenticated using Google.
+- [ ] Add more components to the book view pages (average rating, # of views, liking reviews, etc.).
+- [ ] Be able to add written reviews instead of just ratings.
+- [ ] Add a GIF keyboard API to written reviews.
