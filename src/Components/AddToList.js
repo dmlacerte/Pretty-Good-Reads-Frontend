@@ -13,9 +13,12 @@ const AddToList = ({user, book}) => {
         console.log(`hit submit`)
         element.preventDefault()
 
-        await axios.put(process.env.NODE_ENV === 'production'
-            ? process.env.REACT_APP_BACK_END_PROD + `/user/updateList/${list}/${user._id}/${book._id}`
-            : process.env.REACT_APP_BACK_END_DEV + `/user/updateList`, {list: list, userId: user._id, bookId: book._id})
+        let routeURI = process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/user/updateList` 
+        : process.env.REACT_APP_BACK_END_DEV + `/user/updateList`;
+
+
+        await axios.put(routeURI, {list: list, userId: user._id, bookId: book._id})
     }
 
   return (
