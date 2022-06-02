@@ -7,12 +7,17 @@ function MainPage() {
     const { user } = useContext(UserContext);
     
     const [randomBook, setRandomBook] = useState(null);
+    const [formInput, setFormInput] = useState(false);
 
     function pickRandomBook() {
         if (user.wishlist.length !== 0) {
             let randomIndex = Math.floor(Math.random() * (user.wishlist.length));
             setRandomBook(user.wishlist[randomIndex].id);
         }
+    }
+
+    function updateFormInput() {
+        setFormInput(true);
     }
 
     useEffect(() => {
@@ -26,16 +31,20 @@ function MainPage() {
                 <img className={styles.img} src='https://media3.giphy.com/media/JrXc72Pz2Ib1dBK13T/giphy.gif?cid=ecf05e47wg70oq386jw522c5yz919j3tv82zq7tvlxselv2m&rid=giphy.gif&ct=g'/>
                 <form action="/search" method="GET">
                     <div className={styles.searchFields}>
-                        <input type="text" id="title" name="title" placeholder="Title"/>
-                        <input type="text" id="author" name="author" placeholder="Author"/>
-                        <input type="text" id="genre" name="genre" placeholder="Genre"/>
+                        <input onChange={updateFormInput} type="text" id="title" name="title" placeholder="Title"/>
+                        <input onChange={updateFormInput} type="text" id="author" name="author" placeholder="Author"/>
+                        <input onChange={updateFormInput} type="text" id="genre" name="genre" placeholder="Genre"/>
                     </div>
-                    <button className={styles.button} type="submit" name="submit" value="Search">Search For a New Book</button>
+                    <button className={styles.button} type="submit" name="submit" value="Search"
+                        disabled={formInput ? false : true}>
+                        Search For a New Book
+                    </button>
                 </form>
                 <p className={styles.or}>OR</p>
                 <Link to={`/book/${randomBook}`}>
-                    <button className={styles.button} type="submit">Select Random from TBR</button>
+                    <button className={styles.button} type="submit" disabled={user.wishlist.length === 0 ? true : false}>Select Random from TBR</button>
                 </Link>
+                {user.wishlist.length === 0 ? <p className={styles.wishlistMessage}>You don't have any books on your wishlist yet!</p> : null}
             </div>
         </>
     )

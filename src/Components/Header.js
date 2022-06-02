@@ -7,15 +7,18 @@ function Header() {
     const { setAuthenticated, setUser, user } = useContext(UserContext);
 
     function logOut() {
-        axios.get(process.env.NODE_ENV === 'production'
-            ? process.env.REACT_APP_BACK_END_PROD + "/user/logout"
-            : process.env.REACT_APP_BACK_END_DEV + "/user/logout", {
-            withCredentials: true
-        }).then(response => {
-            const { authenticated, user } = response.data;
-            setAuthenticated(authenticated);
-            setUser(user);
-        })
+        // axios.get(process.env.NODE_ENV === 'production'
+        //     ? process.env.REACT_APP_BACK_END_PROD + "/user/logout"
+        //     : process.env.REACT_APP_BACK_END_DEV + "/user/logout", {
+        //     withCredentials: true
+        // }).then(response => {
+        //     const { authenticated, user } = response.data;
+        //     setAuthenticated(authenticated);
+        //     setUser(user);
+        // })
+        localStorage.removeItem('token');
+        setAuthenticated(false);
+        setUser(null);
     }
 
     useEffect(() => {
