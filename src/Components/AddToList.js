@@ -28,9 +28,9 @@ const AddToList = () => {
     <form onSubmit={(e) => handleSubmit(e)}>
         <select name="bookList" id="bookList" onChange={(e) => handleChange(e)}>
             <option value="notRead">Not Read</option>
-            <option value="wishlist">Want to Read</option>
+            <option value="wishlist">Wishlist</option>
             <option value="reading">Reading</option>
-            <option value="finished">Have Read</option>
+            <option value="finished">Finished</option>
         </select>
         <input type="submit" value="Update" />
     </form>
