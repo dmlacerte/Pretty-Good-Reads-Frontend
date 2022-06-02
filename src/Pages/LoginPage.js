@@ -28,6 +28,7 @@ function LoginPage() {
                     : process.env.REACT_APP_BACK_END_DEV
             }
         }).then(response => {
+            localStorage.setItem('token', JSON.stringify(response.data.token));
             setUser(response.data.user);
             setAuthenticated(true);
         })

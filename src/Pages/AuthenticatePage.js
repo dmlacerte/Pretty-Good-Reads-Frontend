@@ -12,19 +12,23 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 function AuthenticatePage() {
-    const { authenticated, setAuthenticated, user, setUser, bookRatings, book } = useContext(UserContext);
+    const { authenticated, setAuthenticated, setUser, bookRatings, book } = useContext(UserContext);
 
-  useEffect(() => {
-    axios.get(process.env.NODE_ENV === 'production'
-      ? process.env.REACT_APP_BACK_END_PROD + "/user/me"
-      : process.env.REACT_APP_BACK_END_DEV + "/user/me", {
-      withCredentials: true
-    }).then(response => {
-      const {authenticated, user} = response.data;
-      setAuthenticated(authenticated);
-      setUser(user);
-    })
-  }, [book, bookRatings])
+    useEffect(() => {
+      axios.get(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + "/user/me"
+        : process.env.REACT_APP_BACK_END_DEV + "/user/me", 
+        {
+        withCredentials: true,
+        headers: { 
+          token: JSON.parse(localStorage.getItem('token'))
+        }
+      }).then(response => {
+        const {authenticated, user} = response.data;
+        setAuthenticated(authenticated);
+        setUser(user);
+      })
+    }, [book, bookRatings])
 
   return (
     <>
