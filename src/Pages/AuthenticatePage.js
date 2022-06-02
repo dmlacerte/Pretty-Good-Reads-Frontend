@@ -12,7 +12,7 @@ import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 function AuthenticatePage() {
-    const { authenticated, setAuthenticated, setUser, bookRatings, book } = useContext(UserContext);
+    const { authenticated, reRender, setAuthenticated, setUser } = useContext(UserContext);
 
     useEffect(() => {
       axios.get(process.env.NODE_ENV === 'production'
@@ -28,7 +28,7 @@ function AuthenticatePage() {
         setAuthenticated(authenticated);
         setUser(user);
       })
-    }, [book, bookRatings])
+    }, [reRender])
 
   return (
     <>

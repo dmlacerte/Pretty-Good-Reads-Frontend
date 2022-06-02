@@ -3,7 +3,7 @@ import UserContext from '../UserContext'
 const axios = require('axios')
 
 const AddToList = () => {
-    const { user, setUser, book } = useContext(UserContext);
+    const { user, book, reRender, setReRender } = useContext(UserContext);
     const [list, setList] = useState(`notRead`)
 
 
@@ -20,12 +20,7 @@ const AddToList = () => {
         : process.env.REACT_APP_BACK_END_DEV + `/user/updateList`;
 
         axios.put(routeURI, {list: list, userId: user._id, bookId: book._id})
-        .then(() => setUser(oldUser => {
-            return {
-                ...oldUser,
-                pending: true
-            }
-        }))
+        .then(() => setReRender(reRender + 1))
     }
 
   return (

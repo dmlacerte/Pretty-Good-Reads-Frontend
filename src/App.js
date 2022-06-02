@@ -10,13 +10,15 @@ function App() {
   const [user, setUser] = useState(null);
   const [book, setBook] = useState(null);
   const [bookRatings, setBookRatings] = useState(null);
+  const [reRender, setReRender] = useState(0);
 
   return (
     <UserContext.Provider value={{ 
       authenticated, setAuthenticated,
       user, setUser, 
       book, setBook,
-      bookRatings, setBookRatings
+      bookRatings, setBookRatings,
+      reRender, setReRender
       }}>
       <AuthenticatePage/>
     </UserContext.Provider>
