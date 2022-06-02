@@ -12,15 +12,16 @@ const AddToList = () => {
     }
 
     function handleSubmit (element) {
-        console.log(`hit submit`)
+        // console.log(`hit submit`)
         element.preventDefault()
 
         let routeURI = process.env.NODE_ENV === 'production'
         ? process.env.REACT_APP_BACK_END_PROD + `/user/updateList` 
         : process.env.REACT_APP_BACK_END_DEV + `/user/updateList`;
 
-        axios.put(routeURI, {list: list, userId: user._id, bookId: book._id})
-        .then(() => setReRender(reRender + 1))
+        axios.put(routeURI, {list: list, userId: user._id, bookId: book._id})   
+            .then(() => setReRender(reRender + 1))
+            .catch(console.error);
     }
 
   return (
