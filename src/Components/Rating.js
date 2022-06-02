@@ -1,8 +1,10 @@
 import styles from './css/Rating.module.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 import axios from 'axios';
 
-const Rating = ({user, book}) => {
+const Rating = () => {
+    const { user, book } = useContext(UserContext);
     const [starRating, setStarRating] = useState(null)
 
     useEffect(() => {

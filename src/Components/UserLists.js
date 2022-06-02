@@ -26,7 +26,7 @@ function UserLists() {
 
     useEffect(() => {
         updateBooks();
-    }, []);
+    }, [user]);
 
     if (!displayListBooks) {
         return <h1>Loading...</h1>
@@ -52,7 +52,7 @@ function UserLists() {
             <div className={styles.resultsContainer}>
                 {displayListBooks[displayList].map((book, index) => {
                     return (
-                        <Link to={`/book/${book.id}`} onClick={() => this.forceUpdate} key={index}>
+                        <Link to={`/book/${book.id}`} key={index}>
                             <div className={styles.resultContainer}>
                                 <div>
                                     <img src= {displayList === "reading" 
@@ -75,3 +75,5 @@ function UserLists() {
 }
 
 export default UserLists;
+
+//onClick={() => this.forceUpdate}

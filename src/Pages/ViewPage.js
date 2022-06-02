@@ -1,15 +1,15 @@
 import styles from './css/View.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
 import RatingList from '../Components/RatingList';
+import UserContext from '../UserContext';
 const axios = require('axios')
 
-function ViewPage({user}) {
+function ViewPage() {
+    const { book, setBook, bookRatings, setBookRatings } = useContext(UserContext);
     let { id } = useParams();
-    const [book, setBook] = useState(null);
-    const [bookRatings, setBookRatings] = useState(null);
     
     function createBook() {
         console.log(`creating`)
@@ -55,7 +55,7 @@ function ViewPage({user}) {
 
     useEffect(() => {
         updateBook()
-    }, []);
+    }, [bookRatings]);
 
     //run this when book is updated
     useEffect(() => {
@@ -71,10 +71,10 @@ function ViewPage({user}) {
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
-                    <AddToList user={user} book={book}/>
+                    <AddToList />
                     <div className={styles.myRatingContainer}>
                         <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating user={user} book={book}/>
+                        <Rating />
                     </div>
                 </div>
                 <div className={styles.bookContentRight}>
