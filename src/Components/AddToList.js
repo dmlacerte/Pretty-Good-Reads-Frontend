@@ -19,7 +19,6 @@ const AddToList = () => {
         ? process.env.REACT_APP_BACK_END_PROD + `/user/updateList` 
         : process.env.REACT_APP_BACK_END_DEV + `/user/updateList`;
 
-
         axios.put(routeURI, {list: list, userId: user._id, bookId: book._id})
         .then(() => setUser(oldUser => {
             return {
