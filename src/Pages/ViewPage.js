@@ -1,5 +1,5 @@
 import styles from './css/View.module.css';
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
@@ -8,8 +8,8 @@ import UserContext from '../UserContext';
 const axios = require('axios')
 
 function ViewPage() {
-    const { book, setBook, bookRatings, setBookRatings } = useContext(UserContext);
-    let { id } = useParams();
+    let { id } = useParams()
+    const { book, bookRatings, reRender, setBook, setBookRatings } = useContext(UserContext)
     
     function createBook() {
         console.log(`creating`)
@@ -19,6 +19,7 @@ function ViewPage() {
                 ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
                 : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
             .then(res => {
+                console.log(`in create book`)
                 console.log(res)
                 setBook(res.data)
             })
@@ -31,6 +32,7 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
             .then(res => {
+                console.log(`in update book`)
                 console.log(res)
                 if (res.data) setBook(res.data[0])
                 else createBook()
@@ -47,6 +49,7 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
+                console.log(`in update book ratings`)
                 console.log(ratings)
                 setBookRatings(ratings.data)
             })
@@ -55,7 +58,8 @@ function ViewPage() {
 
     useEffect(() => {
         updateBook()
-    }, [bookRatings]);
+        updatebookRatings()
+    }, [reRender]);
 
     //run this when book is updated
     useEffect(() => {
@@ -94,7 +98,7 @@ function ViewPage() {
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                 </div>
                 <div className={styles.reviewsList}>
-                    <RatingList bookRatings={bookRatings}/>
+                    <RatingList />
                 </div>
             </div>
         </>

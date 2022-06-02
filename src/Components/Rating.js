@@ -4,8 +4,13 @@ import UserContext from '../UserContext';
 import axios from 'axios';
 
 const Rating = () => {
-    const { user, book } = useContext(UserContext);
+    const { user, book, reRender, setReRender } = useContext(UserContext);
     const [starRating, setStarRating] = useState(null)
+
+    function handleSubmit (idx) {
+        setStarRating(idx)
+        setReRender(reRender + 1)
+    }
 
     useEffect(() => {
         axios.get(process.env.NODE_ENV === 'production'
@@ -49,7 +54,7 @@ const Rating = () => {
                 <span 
                         key ={idx}
                         className={idx <= starRating ? styles.on : styles.off}
-                        onClick={() => setStarRating(idx)}
+                        onClick={() => handleSubmit(idx)}
                     >
                         &#9733;
                 </span>
