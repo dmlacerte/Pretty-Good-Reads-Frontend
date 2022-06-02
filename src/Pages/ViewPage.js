@@ -1,15 +1,15 @@
 import styles from './css/View.module.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
 import RatingList from '../Components/RatingList';
+import UserContext from '../UserContext';
 const axios = require('axios')
 
-function ViewPage({user}) {
-    let { id } = useParams();
-    const [book, setBook] = useState(null);
-    const [bookRatings, setBookRatings] = useState(null);
+function ViewPage() {
+    let { id } = useParams()
+    const { book, bookRatings, reRender, setBook, setBookRatings } = useContext(UserContext)
     
     function createBook() {
         console.log(`creating`)
@@ -19,6 +19,7 @@ function ViewPage({user}) {
                 ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
                 : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
             .then(res => {
+                console.log(`in create book`)
                 console.log(res)
                 setBook(res.data)
             })
@@ -31,6 +32,7 @@ function ViewPage({user}) {
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
             .then(res => {
+                console.log(`in update book`)
                 console.log(res)
                 if (res.data) setBook(res.data[0])
                 else createBook()
@@ -47,6 +49,7 @@ function ViewPage({user}) {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
+                console.log(`in update book ratings`)
                 console.log(ratings)
                 setBookRatings(ratings.data)
             })
@@ -55,7 +58,8 @@ function ViewPage({user}) {
 
     useEffect(() => {
         updateBook()
-    }, []);
+        updatebookRatings()
+    }, [reRender]);
 
     //run this when book is updated
     useEffect(() => {
@@ -71,10 +75,10 @@ function ViewPage({user}) {
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
-                    <AddToList user={user} book={book}/>
+                    <AddToList />
                     <div className={styles.myRatingContainer}>
                         <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating user={user} book={book}/>
+                        <Rating />
                     </div>
                 </div>
                 <div className={styles.bookContentRight}>
@@ -94,7 +98,7 @@ function ViewPage({user}) {
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                 </div>
                 <div className={styles.reviewsList}>
-                    <RatingList bookRatings={bookRatings}/>
+                    <RatingList />
                 </div>
             </div>
         </>

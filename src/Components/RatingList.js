@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import styles from './css/Rating.module.css'
+import UserContext from '../UserContext'
 
-const RatingList = ({bookRatings}) => {
-  
+const RatingList = () => {
+  const { bookRatings } = useContext(UserContext)
   if (bookRatings.length === 0) {
     return (
         <div>No one has rated this yet!</div>

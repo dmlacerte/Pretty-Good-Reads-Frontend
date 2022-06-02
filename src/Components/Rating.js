@@ -1,9 +1,16 @@
 import styles from './css/Rating.module.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import UserContext from '../UserContext';
 import axios from 'axios';
 
-const Rating = ({user, book}) => {
+const Rating = () => {
+    const { user, book, reRender, setReRender } = useContext(UserContext);
     const [starRating, setStarRating] = useState(null)
+
+    function handleSubmit (idx) {
+        setStarRating(idx)
+        setReRender(reRender + 1)
+    }
 
     useEffect(() => {
         axios.get(process.env.NODE_ENV === 'production'
@@ -47,7 +54,7 @@ const Rating = ({user, book}) => {
                 <span 
                         key ={idx}
                         className={idx <= starRating ? styles.on : styles.off}
-                        onClick={() => setStarRating(idx)}
+                        onClick={() => handleSubmit(idx)}
                     >
                         &#9733;
                 </span>

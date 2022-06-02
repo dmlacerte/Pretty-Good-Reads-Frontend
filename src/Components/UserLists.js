@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
 function UserLists() {
-    const { user } = useContext(UserContext);
+    const { user, reRender, setReRender } = useContext(UserContext);
 
     const [displayList, setDisplayList] = useState("reading");
     const [displayListBooks, setDisplayListBooks] = useState(null);
@@ -22,11 +22,12 @@ function UserLists() {
     function updateDisplayList(ev) {
         ev.preventDefault();
         setDisplayList(ev.target.id);
+        setReRender(reRender+1);
     }
 
     useEffect(() => {
         updateBooks();
-    }, []);
+    }, [reRender]);
 
     if (!displayListBooks) {
         return <h1>Loading...</h1>
@@ -52,8 +53,8 @@ function UserLists() {
             <div className={styles.resultsContainer}>
                 {displayListBooks[displayList].map((book, index) => {
                     return (
-                        <Link to={`/book/${book.id}`} onClick={() => this.forceUpdate} key={index}>
-                            <div className={styles.resultContainer}>
+                        <Link to={`/book/${book.id}`} key={index}>
+                            <div className={styles.resultContainer} onClick={() => setReRender(reRender+1)}>
                                 <div>
                                     <img src= {displayList === "reading" 
                                         ? "https://icons.iconarchive.com/icons/google/noto-emoji-objects/24/62859-open-book-icon.png" 
@@ -63,7 +64,7 @@ function UserLists() {
                                 <div>
                                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
                                     <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
-                                    {displayList === "finished" ? <Rating user={user} book={book}/> : null}
+                                    {/* {displayList === "finished" ? <Rating/> : null} */}
                                 </div>
                             </div>
                         </Link>
@@ -75,3 +76,5 @@ function UserLists() {
 }
 
 export default UserLists;
+
+//onClick={() => this.forceUpdate}
