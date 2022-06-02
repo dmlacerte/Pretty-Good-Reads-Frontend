@@ -15,15 +15,9 @@ function SearchPage(props) {
         (searchParams.get('author') ? `+inauthor:${searchParams.get('author')}` : ``)+
         (searchParams.get('genre') ? `+subject:${searchParams.get('genre')}` : ``)+
         `&startIndex=${index}&printType=books&key=${process.env.REACT_APP_API_KEY}`
-        console.log(searchURI)
         axios.get(searchURI)
         .then(res => {
             setTotal(res.data.totalItems)
-            // let books = []
-            // for (let i = 0; i < res.data.items.length; i++) {
-            //     books.push(res.data.items[i].volumeInfo)
-            // }
-            console.log(res.data.items)
             setBookResults(res.data.items)
         })
         .catch(console.error)

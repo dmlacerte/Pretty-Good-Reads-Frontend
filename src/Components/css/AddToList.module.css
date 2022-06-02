@@ -1,0 +1,21 @@
+.listOptions {
+    width: 8vw;
+}
+
+/* Mobile Accessibility */
+@media only screen and (max-width: 600px) {
+
+.listOptions {
+    width: 20vw;
+}
+    
+}
+
+/* Tablet Accessibility */
+@media only screen and (min-width: 600px) and (max-width: 820px)  {
+
+.listOptions {
+    width: 15vw;
+}
+
+}
