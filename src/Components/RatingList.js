@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
-import styles from './css/Rating.module.css'
 import UserContext from '../UserContext'
+import Stars from './Stars'
 
 const RatingList = () => {
-  const { bookRatings } = useContext(UserContext)
+  const { bookRatings, book } = useContext(UserContext)
   
   if (bookRatings.length === 0) {
     return (
@@ -13,16 +13,9 @@ const RatingList = () => {
     return (
         <>
       {bookRatings.map((rating, idx) => (
-          <div style={{ margin: 5}} key={idx}>{rating.user.name} rated it: {[...Array(5)].map((star, idx) => {
-              return (
-                  <span 
-                          key={idx}
-                          className={idx < rating.score ? styles.on : styles.off}
-                      >
-                          &#9733;
-                  </span>
-              )
-          })}</div>
+          <div style={{ margin: 5}} key={idx}>
+            {rating.user.name} rated it: <Stars userId={rating.user._id} bookId={book._id}/>
+            </div>
       ))}
       </>
     )
