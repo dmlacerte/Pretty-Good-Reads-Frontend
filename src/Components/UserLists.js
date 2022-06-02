@@ -11,7 +11,6 @@ function UserLists() {
     const [displayListBooks, setDisplayListBooks] = useState(null);
 
     function updateBooks() {
-        // console.log('updating books');
         fetch(process.env.NODE_ENV === 'production'
         ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${user.googleId}`
         : process.env.REACT_APP_BACK_END_DEV + `/book/user/${user.googleId}`)

@@ -13,8 +13,6 @@ function MainPage() {
         if (user.wishlist.length !== 0) {
             let randomIndex = Math.floor(Math.random() * (user.wishlist.length));
             setRandomBook(user.wishlist[randomIndex].id);
-            console.log('picked number')
-            console.log(user.wishlist)
         }
     }
 
