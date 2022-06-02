@@ -72,6 +72,12 @@ const Rating = () => {
                 )
             })}
         </div> 
+        <form method="POST" action={process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}?_method=PUT`
+        : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}?_method=PUT`}>
+            <input type="text" id="comment" name="comment"></input>
+            <input disabled={starRating ? false : true} type="submit" value="Submit"></input>
+        </form>
         <p className={styles.removeRating} onClick={() => deleteRating()}>Reset Rating</p>
     </> 
   )

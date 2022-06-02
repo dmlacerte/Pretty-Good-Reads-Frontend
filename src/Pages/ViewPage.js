@@ -70,10 +70,6 @@ function ViewPage() {
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
                     <AddToList />
-                    <div className={styles.myRatingContainer}>
-                        <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating />
-                    </div>
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
@@ -91,6 +87,10 @@ function ViewPage() {
                     <h1>Community Ratings</h1>
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                     <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
+                </div>
+                <div className={styles.myRatingContainer}>
+                        <p className={styles.bookRatingUser}>My Rating</p>
+                        <Rating />
                 </div>
                 <div className={styles.reviewsList}>
                     <RatingList />
