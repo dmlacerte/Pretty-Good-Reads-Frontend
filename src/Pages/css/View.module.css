@@ -21,7 +21,7 @@ img {
     margin: 10px;
 }
 
-.myRatingContainer p {
+.myRatingContainer .bookRatingUser {
     font-size: 20px;
     margin: 50px 0px 0px 0px;
     padding: 0px;

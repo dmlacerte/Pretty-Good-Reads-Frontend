@@ -49,8 +49,8 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
-                // console.log(`in update book ratings`)
-                // console.log(ratings)
+                console.log(`in update book ratings`)
+                console.log(ratings)
                 setBookRatings(ratings.data)
             })
             .catch(console.error)
