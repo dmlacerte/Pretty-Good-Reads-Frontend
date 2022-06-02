@@ -13,6 +13,8 @@ function MainPage() {
         if (user.wishlist.length !== 0) {
             let randomIndex = Math.floor(Math.random() * (user.wishlist.length));
             setRandomBook(user.wishlist[randomIndex].id);
+            console.log('picked number')
+            console.log(user.wishlist)
         }
     }
 
@@ -33,7 +35,18 @@ function MainPage() {
                     <div className={styles.searchFields}>
                         <input onChange={updateFormInput} type="text" id="title" name="title" placeholder="Title"/>
                         <input onChange={updateFormInput} type="text" id="author" name="author" placeholder="Author"/>
-                        <input onChange={updateFormInput} type="text" id="genre" name="genre" placeholder="Genre"/>
+                        <select onChange={updateFormInput} id="genre" name="genre">
+                            <option value="">Genre (All)</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="classics">Classics</option>
+                            <option value="detective">Detective</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="historical">Historical</option>
+                            <option value="horror">Horror</option>
+                            <option value="romance">Romance</option>
+                            <option value="thriller">Thriller</option>
+                        </select>
+                        {/* <input onChange={updateFormInput} type="text" id="genre" name="genre" placeholder="Genre"/> */}
                     </div>
                     <button className={styles.button} type="submit" name="submit" value="Search"
                         disabled={formInput ? false : true}>
