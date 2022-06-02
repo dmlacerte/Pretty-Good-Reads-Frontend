@@ -22,11 +22,12 @@ function UserLists() {
     function updateDisplayList(ev) {
         ev.preventDefault();
         setDisplayList(ev.target.id);
+        setReRender(reRender+1);
     }
 
     useEffect(() => {
         updateBooks();
-    }, [user, reRender]);
+    }, [reRender]);
 
     if (!displayListBooks) {
         return <h1>Loading...</h1>
@@ -63,7 +64,7 @@ function UserLists() {
                                 <div>
                                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
                                     <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
-                                    {displayList === "finished" ? <Rating/> : null}
+                                    {/* {displayList === "finished" ? <Rating/> : null} */}
                                 </div>
                             </div>
                         </Link>
