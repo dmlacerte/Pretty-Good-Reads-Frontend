@@ -11,7 +11,6 @@ function UserLists() {
     const [displayListBooks, setDisplayListBooks] = useState(null);
 
     function updateBooks() {
-        // console.log('updating books');
         fetch(process.env.NODE_ENV === 'production'
         ? process.env.REACT_APP_BACK_END_PROD + `/book/user/${user.googleId}`
         : process.env.REACT_APP_BACK_END_DEV + `/book/user/${user.googleId}`)
@@ -43,11 +42,11 @@ function UserLists() {
                 </p>
                 <p className={displayList === "wishlist" ? `${`${styles.tabTwo} ${styles.selected}`}` : `${styles.tabTwo}`} 
                     id="wishlist" onClick={updateDisplayList}>
-                    TBR
+                    Wishlist
                 </p>
                 <p className={displayList === "finished" ? `${`${styles.tabThree} ${styles.selected}`}` : `${styles.tabThree}`}
                     id="finished" onClick={updateDisplayList}>
-                    Past Reads
+                    Finished
                 </p>
             </div>
             {/* To add filters, below likely will be a second component */}

@@ -12,15 +12,12 @@ function ViewPage() {
     const { book, bookRatings, reRender, setBook, setBookRatings } = useContext(UserContext)
     
     function createBook() {
-        // console.log(`creating`)
         const searchURI = `https://www.googleapis.com/books/v1/volumes/${id}?key=${process.env.REACT_APP_API_KEY}`
         axios.get(searchURI)
             .then(res => axios.post(process.env.NODE_ENV === 'production'
                 ? process.env.REACT_APP_BACK_END_PROD + `/book/post`
                 : process.env.REACT_APP_BACK_END_DEV + `/book/post`, res.data))
             .then(res => {
-                // console.log(`in create book`)
-                // console.log(res)
                 setBook(res.data)
             })
             .catch(console.error)
@@ -32,8 +29,6 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
             .then(res => {
-                // console.log(`in update book`)
-                // console.log(res)
                 if (res.data) setBook(res.data[0])
                 else createBook()
             })
@@ -49,8 +44,6 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
-                console.log(`in update book ratings`)
-                console.log(ratings)
                 setBookRatings(ratings.data)
             })
             .catch(console.error)
