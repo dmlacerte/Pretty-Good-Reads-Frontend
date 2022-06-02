@@ -26,7 +26,7 @@ const Rating = () => {
         ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
         : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}`)
         .then(res => {
-            if(!res.data) return
+            if(!res.data) setStarRating(null);
             else setStarRating(res.data.score)
         })
     }, [user])
