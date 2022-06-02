@@ -12,6 +12,15 @@ const Rating = () => {
         setReRender(reRender + 1)
     }
 
+    function deleteRating() {
+        axios.delete(process.env.NODE_ENV === 'production'
+        ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
+        : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}`)
+        .then(() => setStarRating(null))
+        .then(() => setReRender(reRender + 1))
+        .catch(console.error);
+    }
+
     useEffect(() => {
         axios.get(process.env.NODE_ENV === 'production'
         ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
@@ -42,25 +51,29 @@ const Rating = () => {
                 : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}/${starRating}`)
                 .catch(console.error)
             }
+            setReRender(reRender + 1);
         })
         .catch(console.error)
     }, [starRating])
 
   return (
-    <div className='starRating'>
-        {[...Array(5)].map((star, idx) => {
-            idx += 1
-            return (
-                <span 
-                        key ={idx}
-                        className={idx <= starRating ? styles.on : styles.off}
-                        onClick={() => handleSubmit(idx)}
-                    >
-                        &#9733;
-                </span>
-            )
-        })}
-    </div>  
+    <>
+        <div className='starRating'>
+            {[...Array(5)].map((star, idx) => {
+                idx += 1
+                return (
+                    <span 
+                            key ={idx}
+                            className={idx <= starRating ? styles.on : styles.off}
+                            onClick={() => handleSubmit(idx)}
+                        >
+                            &#9733;
+                    </span>
+                )
+            })}
+        </div> 
+        <p className={styles.removeRating} onClick={() => deleteRating()}>Reset Rating</p>
+    </> 
   )
 }
 
