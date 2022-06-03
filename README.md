@@ -10,7 +10,9 @@ Live version deployed to Netlify at https://pretty-good-reads.netlify.app
 React, HTML5, CSS3, Javascript, Google oAuth 2.0
 
 **Application Functionality**<br />
-*ADD GIFS*
+*ADD GIFS*!
+[PGRLogin](https://user-images.githubusercontent.com/97360775/171778155-0572d170-67c3-4c89-a860-b3e05b930c2b.gif)
+
 - Ability to authenticate and set up user accounts using Google oAuth 2.0. 
 - Ability to search for and view results from backend 3rd party Google Books API.
 - Ability to categorize books in user list categories (reading, want to read, have read).
