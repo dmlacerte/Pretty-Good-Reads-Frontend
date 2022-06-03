@@ -4,7 +4,7 @@
 The frontend of a semi-clone of Good Reads, where you can search for books and record books you're currently reading, want to read, or have read. You can also rate books you've already read, and view ratings from other users. 
 
 **Link to Deployed Application**<br />
-Live version deployed to Netlify at *ADD FINAL LINK*
+[Live version deployed to Netlify](https://pretty-good-reads.netlify.app)
 
 **List of Technologies Used**<br />
 React, HTML5, CSS3, Javascript, Google oAuth 2.0
@@ -44,3 +44,4 @@ Deanna Lacerte & Phil Zeise
 **Source Citations**<br />
 - https://blog.prototypr.io/how-to-build-google-login-into-a-react-app-and-node-express-api-821d049ee670
 - https://medium.com/@ni3t/reacts-usestate-and-context-for-auth-routing-78347da1d6f
+- https://dev.to/michaelburrows/create-a-custom-react-star-rating-component-5o6
