@@ -3,27 +3,27 @@ import styles from './css/Stars.module.css'
 import axios from 'axios'
 import UserContext from '../UserContext'
 
-const Stars = ({userId, bookId, rating}) => {
-    const {reRender} = useContext(UserContext)
-    const [starRating, setStarRating] = useState(rating ? rating : null)
+const Stars = ({userId, bookId, avg}) => {
+    const {reRender, book} = useContext(UserContext)
+    const [starRating, setStarRating] = useState(null)
 
     useEffect(() => {
         //if setting community look at all reviews
         //else look at the users review
-        if (rating) {
-            axios.get(process.env.NODE_ENV === 'production'
-            ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${bookId}`
-            : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${bookId}`)
-            .then(res => {
-                if(!res.data) setStarRating(rating);
-                else {
-                    let sum = res.data.reduce((n, {score}) => n + score, 0)
-                    let avg = sum / res.data.length
-                    let finalAvg = rating !== "skip" ? (avg + rating) / 2 : avg
-                    setStarRating(Math.round(finalAvg))
-                }
-            })
-        } else {
+        // if (avg) {
+        //     axios.get(process.env.NODE_ENV === 'production'
+        //     ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book['_id']}`
+        //     : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book['_id']}`)
+        //     .then(res => {
+        //         if(!res.data) setStarRating(null);
+        //             else {
+        //                 let sum = res.data.reduce((n, {score}) => n + score, 0)
+        //                 let finalAvg = sum / res.data.length
+        //                 setStarRating(Math.round(finalAvg))
+        //             }
+        //     })
+        // } else {
+        if (!avg) {
             axios.get(process.env.NODE_ENV === 'production'
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/${userId}/${bookId}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/${userId}/${bookId}`)
@@ -34,9 +34,26 @@ const Stars = ({userId, bookId, rating}) => {
         }
     }, [reRender])
 
+    //rerender avg rating component when book changes 
+    useEffect(() => {
+        if (avg) {
+            axios.get(process.env.NODE_ENV === 'production'
+            ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book['_id']}`
+            : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book['_id']}`)
+            .then(res => {
+                if(!res.data) setStarRating(null);
+                    else {
+                        let sum = res.data.reduce((n, {score}) => n + score, 0)
+                        let finalAvg = sum / res.data.length
+                        setStarRating(Math.round(finalAvg))
+                    }
+            })
+        }
+    }, [book, reRender])
+
   return (
     <>
-    <div className={rating ? 'communityRating' : 'stars'}>
+    <div className={avg ? 'communityRating' : 'stars'}>
         {[...Array(5)].map((star, idx) => {
             idx += 1
             return (

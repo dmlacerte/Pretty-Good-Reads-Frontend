@@ -2,6 +2,10 @@
     width: 8vw;
 }
 
+.form {
+    margin-top: 10px;
+}
+
 /* Mobile Accessibility */
 @media only screen and (max-width: 600px) {
 
