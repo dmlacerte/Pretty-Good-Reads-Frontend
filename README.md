@@ -4,7 +4,7 @@
 The frontend of a semi-clone of Good Reads, where you can search for books and record books you're currently reading, want to read, or have read. You can also rate books you've already read, and view ratings from other users. 
 
 **Link to Deployed Application**<br />
-[Live version deployed to Netlify](https://pretty-good-reads.netlify.app)
+Live version deployed to Netlify at https://pretty-good-reads.netlify.app
 
 **List of Technologies Used**<br />
 React, HTML5, CSS3, Javascript, Google oAuth 2.0
@@ -21,7 +21,7 @@ React, HTML5, CSS3, Javascript, Google oAuth 2.0
 Due to cross-domain restrictions and chosen deployment applications (Netlify and Heroku) being on the public-suffix list, we were unable to deploy our original authentication method. We originally set HTTP cookies to maintain user authentication sessions, but due to domain restrictions were unable to set cookies and switched to local storage user session validation. Please see commented code within the backend files for evidence of HTTP cookie authorization method, which can be tested using localhost. 
 
 **Link to Backend API**<br />
-Backend Live API: *ADD FINAL LINK*<br />
+Backend Live API: https://pretty-good-reads-dlacerte-pz.herokuapp.com<br />
 Backend GitHub: https://github.com/dmlacerte/pretty-good-reads-backend
 
 **Installation Instructions**<br />
