@@ -38,7 +38,7 @@ const AddToList = () => {
     }, [book]);
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
         <select className={styles.listOptions} name="bookList" id="bookList" onChange={(e) => handleChange(e)}>
             <option value="notRead" selected={currentList === 'notRead' ? true : false}>Not Read</option>
             <option value="wishlist" selected={currentList === 'wishlist' ? true : false}>Wishlist</option>

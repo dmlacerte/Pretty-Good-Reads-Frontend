@@ -1,3 +1,9 @@
+.ratingActionsContainer {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
 .stars {
     background-color: transparent;
     cursor: pointer;
@@ -15,4 +21,19 @@
     color: gray;
     font-size: 12px;
     cursor: pointer;
+}
+
+.commentBoxContainer {
+    width: 100%;
+    word-break: break-all;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.commentBox {
+    width: 100%;
+}
+
+.submitButton {
+    text-align: center;
 }

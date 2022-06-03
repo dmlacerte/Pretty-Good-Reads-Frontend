@@ -60,7 +60,6 @@ const Rating = () => {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/${user._id}/${book._id}`)
             .then(res => {
-                // if (res.data.score === starRating) return
                 if (res.data) {
                     axios.put(process.env.NODE_ENV === 'production'
                         ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}/${starRating}`
@@ -94,13 +93,20 @@ const Rating = () => {
                     )
                 })}
             </div>
-            <div>
+            <div className={styles.ratingActionsContainer}>
                 <p className={styles.ratingActions} onClick={() => deleteRating()}>Reset Rating</p>
-                <p className={styles.ratingActions} onClick={() => setCommentBox(true)}>Add / Edit Comment</p>
+                <p className={styles.ratingActions}>|</p>
+                <p className={styles.ratingActions} onClick={() => setCommentBox(true)}>Add or Edit Comment</p>
+                <p className={styles.ratingActions}>|</p>
+                <p className={styles.ratingActions} onClick={() => setCommentBox(false)}>Cancel</p>
             </div>
-            <p>{displayComment}</p>
-            <input hidden={commentBox ? false : true} type="text" id="comment" name="comment" onChange={(e) => setComment(e.target.value)}></input>
-            <button hidden={commentBox ? false : true} disabled={starRating ? false : true} onClick={() => {updateComment()}}>Submit</button>
+            <div className={styles.commentBoxContainer}>
+                <p>{displayComment}</p>
+                <textarea className={styles.commentBox} hidden={commentBox ? false : true} id="comment" name="comment" wrap="soft" onChange={(e) => setComment(e.target.value)}></textarea>
+                <div className={styles.submitButton}>
+                    <button hidden={commentBox ? false : true} disabled={starRating ? false : true} onClick={() => {updateComment()}}>Submit</button>
+                </div>
+            </div>
         </>
     )
 }
