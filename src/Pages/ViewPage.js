@@ -90,8 +90,8 @@ function ViewPage() {
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                     <h1>Community Ratings</h1>
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                    <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
                 </div>
-                <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
                 <div className={styles.reviewsList}>
                     <RatingList />
                 </div>

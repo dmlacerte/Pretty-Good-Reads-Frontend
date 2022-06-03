@@ -3,10 +3,6 @@ span {
     cursor: pointer;
 }
 
-.communityRating span {
-    font-size: large;
-}
-
 .on {
     color: #000
 }
