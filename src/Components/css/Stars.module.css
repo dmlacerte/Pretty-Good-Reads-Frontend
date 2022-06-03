@@ -1,6 +1,6 @@
 .stars {
     background-color: transparent;
-    cursor: pointer;
+    cursor: default;
 }
 
 .on {

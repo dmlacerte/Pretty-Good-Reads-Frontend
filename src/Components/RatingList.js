@@ -12,12 +12,12 @@ const RatingList = () => {
   } else {
     return (
         <>
-      {bookRatings.map((rating, idx) => (
-          <div style={{ margin: 5}} key={idx}>
-            {rating.user.name} rated it: <Stars userId={rating.user._id} bookId={book._id}/>
-            </div>
-      ))}
-      </>
+          {bookRatings.map((rating, idx) => (
+              <div style={{ margin: 5}} key={idx}>
+                {rating.user.name} rated it: <Stars userId={rating.user._id} bookId={book._id}/>
+                </div>
+          ))}
+        </>
     )
   }
 }
