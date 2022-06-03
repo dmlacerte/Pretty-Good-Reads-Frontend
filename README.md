@@ -18,7 +18,7 @@ Note, some differences in coloring from deployed application may be noticed in g
 - Ability to categorize books in user list categories (reading, want to read, have read). <br />
 ![userList](https://user-images.githubusercontent.com/97196460/171936859-51d14c84-4081-43c8-91b0-9ee92834d752.gif) <br />
 - Ability to create, read, update, and delete user book reviews, as well as view reviews from other users. <br />  
-![userRatings](https://user-images.githubusercontent.com/97196460/171937135-9bb9a374-1e0e-47d7-a536-1a2ab1f88188.gif) <br />
+![userRatings](https://user-images.githubusercontent.com/97196460/171938821-d4ed9458-e174-46d2-a279-ac470ed4d539.gif) <br />
 - Responsive design across a variety of devices, including mobile and tablet. <br />
 ![mobile-view](https://user-images.githubusercontent.com/97196460/171935031-f4714a4a-3ded-4b08-a97c-a662cfbbe7f0.gif)
 ![tablet-view](https://user-images.githubusercontent.com/97196460/171935770-5b9b2c01-0aac-44d2-bd72-0438b985252f.gif) <br />
