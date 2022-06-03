@@ -36,7 +36,7 @@ const Stars = ({userId, bookId, rating}) => {
 
   return (
     <>
-    <div className='starRating'>
+    <div className={rating ? 'communityRating' : 'starRating'}>
         {[...Array(5)].map((star, idx) => {
             idx += 1
             return (
