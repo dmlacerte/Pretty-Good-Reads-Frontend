@@ -11,7 +11,7 @@
     color: rgb(132, 132, 132);
 }
 
-.removeRating {
+.ratingActions {
     color: gray;
     font-size: 12px;
     cursor: pointer;
