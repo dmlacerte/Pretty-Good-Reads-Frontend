@@ -54,7 +54,10 @@ const Rating = () => {
     }, [user])
 
     useEffect(() => {
-        if (!starRating) return
+        if (!starRating) {
+            setDisplayComment(null)
+            return
+        }
 
         axios.get(process.env.NODE_ENV === 'production'
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/${user._id}/${book._id}`

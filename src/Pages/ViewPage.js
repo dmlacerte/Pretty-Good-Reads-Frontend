@@ -1,5 +1,5 @@
 import styles from './css/View.module.css';
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
@@ -30,8 +30,15 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
             .then(res => {
-                console.log(res.data[0]['_id'])
-                if (res.data) setBook(res.data[0])
+                if (res.data) {
+                    //set book details
+                    setBook(res.data[0])
+                    //fetch ratings for book
+                    axios.get(process.env.NODE_ENV === 'production'
+                        ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${res.data[0]['_id']}`
+                        : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${res.data[0]['_id']}`)
+                        .then(ratings => setBookRatings(ratings.data))
+                }
                 else createBook()
             })
             .catch(console.error)
@@ -45,18 +52,13 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${book._id}`
             : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${book._id}`)
             .then(ratings => {
-                let rating = !ratings.data ? null : ratings.data
-                // console.log(`New data: ${rating}`)
-                // console.log(`Book: ${JSON.stringify(book)}`)
-                // console.log(`Ratings Data: ${!ratings.data}`)
-                setBookRatings(rating)
+                setBookRatings(ratings.data)
             })
             .catch(console.error)
     }
 
     useEffect(() => {
         updateBook()
-        updatebookRatings()
     }, [reRender]);
 
     //run this when book is updated
@@ -75,8 +77,8 @@ function ViewPage() {
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
                     <div className={styles.avgRatingContainer}>
                         <p className={styles.bookRatingAvg}>Average Rating</p>
-                        <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
-                        <p className={styles.bookRatingAvgSubtitle}>Combination of community and Google Books ratings</p>
+                        <Stars avg={true} bookId={book._id}/>
+                        <p className={styles.bookRatingAvgSubtitle}>Avg of all user ratings</p>
                     </div>
                     <AddToList />
                     
