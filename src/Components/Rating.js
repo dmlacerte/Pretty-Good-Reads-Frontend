@@ -64,7 +64,7 @@ const Rating = () => {
                 return (
                     <span 
                             key ={idx}
-                            className={idx <= starRating ? styles.on : styles.off}
+                            className={`${styles.stars} ${idx <= starRating ? styles.on : styles.off}`}
                             onClick={() => handleSubmit(idx)}
                         >
                             &#9733;

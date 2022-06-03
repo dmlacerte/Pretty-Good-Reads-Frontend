@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from 'react'
-import styles from './css/Rating.module.css'
+import styles from './css/Stars.module.css'
 import axios from 'axios'
 import UserContext from '../UserContext'
 
@@ -42,7 +42,7 @@ const Stars = ({userId, bookId, rating}) => {
             return (
                 <span 
                         key ={idx}
-                        className={idx <= starRating ? styles.on : styles.off}
+                        className={`${styles.stars} ${idx <= starRating ? styles.on : styles.off}`}
                     >
                         &#9733;
                 </span>
