@@ -2,7 +2,7 @@ import styles from './css/UserLists.module.css';
 import React, { useState, useEffect, useContext } from 'react';
 import UserContext from '../UserContext';
 import { Link } from 'react-router-dom';
-import Rating from './Rating';
+import Stars from './Stars';
 
 function UserLists() {
     const { user, reRender, setReRender } = useContext(UserContext);
@@ -64,7 +64,7 @@ function UserLists() {
                                 <div>
                                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
                                     <p className={styles.bookAuthor}>{book.volumeInfo.authors.join(', ')}</p>
-                                    {/* {displayList === "finished" ? <Rating/> : null} */}
+                                    {displayList === "finished" ? <Stars userId={user._id} bookId={book._id}/> : null}
                                 </div>
                             </div>
                         </Link>
