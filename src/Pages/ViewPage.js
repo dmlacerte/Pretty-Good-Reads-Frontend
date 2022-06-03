@@ -1,10 +1,11 @@
 import styles from './css/View.module.css';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
 import RatingList from '../Components/RatingList';
 import UserContext from '../UserContext';
+import Stars from '../Components/Stars';
 const axios = require('axios')
 
 function ViewPage() {
@@ -89,6 +90,7 @@ function ViewPage() {
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                     <h1>Community Ratings</h1>
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                    <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
                 </div>
                 <div className={styles.reviewsList}>
                     <RatingList />
