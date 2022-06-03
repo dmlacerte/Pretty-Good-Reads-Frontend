@@ -18,9 +18,10 @@ React, HTML5, CSS3, Javascript, Google oAuth 2.0
 - Ability to categorize books in user list categories (reading, want to read, have read).
 - Ability to create, read, update, and delete user book reviews.  
 - Responsive design across a variety of devices, including mobile and tablet. 
+![mobile-view](https://user-images.githubusercontent.com/97196460/171935031-f4714a4a-3ded-4b08-a97c-a662cfbbe7f0.gif)
 
 **Unsolved Problems**<br />
-Due to cross-domain restrictions and chosen deployment applications (Netlify and Heroku) being on the public-suffix list, we were unable to deploy our original authentication method. We originally set HTTP cookies to maintain user authentication sessions, but due to domain restrictions were unable to set cookies and switched to local storage user session validation. Please see commented code within the backend files for evidence of HTTP cookie authorization method, which can be tested using localhost. 
+Due to cross-domain restrictions and chosen deployment applications (Netlify and Heroku) being on the public-suffix list, we were unable to deploy our original authentication method. We originally set HTTP cookies to maintain user authentication sessions, but due to domain restrictions were unable to set cookies and switched to local storage user session validation. Please see commented code within the frontend and backend files for evidence of HTTP cookie authorization method, which can be tested using localhost.
 
 **Link to Backend API**<br />
 Backend Live API:<br /> https://pretty-good-reads-dlacerte-pz.herokuapp.com<br />
