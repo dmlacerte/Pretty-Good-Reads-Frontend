@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
 const UserContext = createContext({
     authenticated: false,
@@ -13,4 +13,4 @@ const UserContext = createContext({
     setReRender: (reRender) => {}
 })
 
-export default UserContext;
+export default UserContext

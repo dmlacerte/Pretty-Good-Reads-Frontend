@@ -1,6 +1,6 @@
-import styles from './css/Search.module.css';
-import React, { useState, useEffect } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import styles from './css/Search.module.css'
+import React, { useState, useEffect } from 'react'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 const axios = require('axios')
 
 function SearchPage(props) {
@@ -10,23 +10,23 @@ function SearchPage(props) {
     const [searchParams, setSearchParams] = useSearchParams()
 
     function updateBookResults() {
-        const searchURI = `https://www.googleapis.com/books/v1/volumes?q=`+
-        (searchParams.get('title') ? `${searchParams.get('title')}` : ``)+
-        (searchParams.get('author') ? `+inauthor:${searchParams.get('author')}` : ``)+
-        (searchParams.get('genre') ? `+subject:${searchParams.get('genre')}` : ``)+
-        `&startIndex=${index}&printType=books&key=${process.env.REACT_APP_API_KEY}`
+        const searchURI = `https://www.googleapis.com/books/v1/volumes?q=` +
+            (searchParams.get('title') ? `${searchParams.get('title')}` : ``) +
+            (searchParams.get('author') ? `+inauthor:${searchParams.get('author')}` : ``) +
+            (searchParams.get('genre') ? `+subject:${searchParams.get('genre')}` : ``) +
+            `&startIndex=${index}&printType=books&key=${process.env.REACT_APP_API_KEY}`
         axios.get(searchURI)
-        .then(res => {
-            setTotal(res.data.totalItems)
-            setBookResults(res.data.items)
-        })
-        .catch(console.error)
+            .then(res => {
+                setTotal(res.data.totalItems)
+                setBookResults(res.data.items)
+            })
+            .catch(console.error)
     }
 
     useEffect(() => {
-        updateBookResults();
-    }, [index]);
-    
+        updateBookResults()
+    }, [index])
+
 
     if (!bookResults) return <h3>Loading</h3>
 
@@ -56,4 +56,4 @@ function SearchPage(props) {
     )
 }
 
-export default SearchPage;
+export default SearchPage

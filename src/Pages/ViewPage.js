@@ -1,17 +1,17 @@
-import styles from './css/View.module.css';
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
-import Rating from '../Components/Rating';
-import AddToList from '../Components/AddToList';
-import RatingList from '../Components/RatingList';
-import UserContext from '../UserContext';
-import Stars from '../Components/Stars';
+import styles from './css/View.module.css'
+import React, { useState, useEffect, useContext } from 'react'
+import { useParams } from 'react-router-dom'
+import Rating from '../Components/Rating'
+import AddToList from '../Components/AddToList'
+import RatingList from '../Components/RatingList'
+import UserContext from '../UserContext'
+import Stars from '../Components/Stars'
 const axios = require('axios')
 
 function ViewPage() {
     let { id } = useParams()
     const { book, bookRatings, reRender, setBook, setBookRatings } = useContext(UserContext)
-    
+
     function createBook() {
         const searchURI = `https://www.googleapis.com/books/v1/volumes/${id}?key=${process.env.REACT_APP_API_KEY}`
         axios.get(searchURI)
@@ -59,12 +59,12 @@ function ViewPage() {
 
     useEffect(() => {
         updateBook()
-    }, [reRender]);
+    }, [reRender])
 
     //run this when book is updated
     useEffect(() => {
         updatebookRatings()
-    }, [book]);
+    }, [book])
 
     if (!book || !bookRatings) {
         return <h1>Loading...</h1>
@@ -77,11 +77,11 @@ function ViewPage() {
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
                     <div className={styles.avgRatingContainer}>
                         <p className={styles.bookRatingAvg}>Average Rating</p>
-                        <Stars avg={true} bookId={book._id}/>
+                        <Stars avg={true} bookId={book._id} />
                         <p className={styles.bookRatingAvgSubtitle}>Avg of all user ratings</p>
                     </div>
                     <AddToList />
-                    
+
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
@@ -95,13 +95,13 @@ function ViewPage() {
             </div>
             <div className={styles.reviewsContainer}>
                 <div className={styles.reviewsHeader}>
-                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png' />
                     <h1>Community Ratings</h1>
-                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
+                    <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png' />
                 </div>
                 <div className={styles.myRatingContainer}>
-                        <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating />
+                    <p className={styles.bookRatingUser}>My Rating</p>
+                    <Rating />
                 </div>
                 <div className={styles.reviewsList}>
                     <RatingList />
@@ -111,4 +111,4 @@ function ViewPage() {
     )
 }
 
-export default ViewPage; 
+export default ViewPage

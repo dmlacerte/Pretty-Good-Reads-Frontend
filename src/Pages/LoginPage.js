@@ -1,15 +1,15 @@
-import styles from './css/Login.module.css';
-import React, { useEffect, useContext } from 'react';
-import UserContext from '../UserContext';
-import { GoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
+import styles from './css/Login.module.css'
+import React, { useEffect, useContext } from 'react'
+import UserContext from '../UserContext'
+import { GoogleLogin } from '@react-oauth/google'
+import axios from 'axios'
 
 function LoginPage() {
-    const { setAuthenticated, setUser } = useContext(UserContext);
+    const { setAuthenticated, setUser } = useContext(UserContext)
 
     useEffect(() => {
-        document.body.style.backgroundColor = 'rgb(255, 225, 220)';
-    }, []);
+        document.body.style.backgroundColor = 'rgb(255, 225, 220)'
+    }, [])
 
     const handleLogin = async googleData => {
         axios.post(process.env.NODE_ENV === 'production'
@@ -28,9 +28,9 @@ function LoginPage() {
                     : process.env.REACT_APP_BACK_END_DEV
             }
         }).then(response => {
-            localStorage.setItem('token', JSON.stringify(response.data.token));
-            setUser(response.data.user);
-            setAuthenticated(true);
+            localStorage.setItem('token', JSON.stringify(response.data.token))
+            setUser(response.data.user)
+            setAuthenticated(true)
         })
     }
 
@@ -59,4 +59,4 @@ function LoginPage() {
     )
 }
 
-export default LoginPage;
+export default LoginPage
