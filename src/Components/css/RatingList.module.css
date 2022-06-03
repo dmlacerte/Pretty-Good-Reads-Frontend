@@ -1,0 +1,9 @@
+.ratingContainer {
+    margin-top: 10px;
+}
+
+.commentBoxContainer {
+    width: 100%;
+    word-break: break-all;
+    font-size: 14px;
+}

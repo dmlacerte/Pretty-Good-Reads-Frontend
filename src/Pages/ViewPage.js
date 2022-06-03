@@ -1,5 +1,5 @@
 import styles from './css/View.module.css';
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import AddToList from '../Components/AddToList';
@@ -30,7 +30,15 @@ function ViewPage() {
             ? process.env.REACT_APP_BACK_END_PROD + `/book/${id}`
             : process.env.REACT_APP_BACK_END_DEV + `/book/${id}`)
             .then(res => {
-                if (res.data) setBook(res.data[0])
+                if (res.data) {
+                    //set book details
+                    setBook(res.data[0])
+                    //fetch ratings for book
+                    axios.get(process.env.NODE_ENV === 'production'
+                        ? process.env.REACT_APP_BACK_END_PROD + `/rate/book/${res.data[0]['_id']}`
+                        : process.env.REACT_APP_BACK_END_DEV + `/rate/book/${res.data[0]['_id']}`)
+                        .then(ratings => setBookRatings(ratings.data))
+                }
                 else createBook()
             })
             .catch(console.error)
@@ -38,7 +46,6 @@ function ViewPage() {
 
     function updatebookRatings() {
         //use id to fetch book reviews from database
-        //universal id we can use b/w api and database?
         if (!book) return
 
         axios.get(process.env.NODE_ENV === 'production'
@@ -52,7 +59,6 @@ function ViewPage() {
 
     useEffect(() => {
         updateBook()
-        updatebookRatings()
     }, [reRender]);
 
     //run this when book is updated
@@ -69,11 +75,13 @@ function ViewPage() {
             <div className={styles.bookContainer}>
                 <div className={styles.bookContentLeft}>
                     <img src={book.volumeInfo.imageLinks.thumbnail} />
-                    <AddToList />
-                    <div className={styles.myRatingContainer}>
-                        <p className={styles.bookRatingUser}>My Rating</p>
-                        <Rating />
+                    <div className={styles.avgRatingContainer}>
+                        <p className={styles.bookRatingAvg}>Average Rating</p>
+                        <Stars avg={true} bookId={book._id}/>
+                        <p className={styles.bookRatingAvgSubtitle}>Avg of all user ratings</p>
                     </div>
+                    <AddToList />
+                    
                 </div>
                 <div className={styles.bookContentRight}>
                     <p className={styles.bookTitle}>{book.volumeInfo.title}</p>
@@ -90,7 +98,10 @@ function ViewPage() {
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
                     <h1>Community Ratings</h1>
                     <img src='https://icons.iconarchive.com/icons/google/noto-emoji-objects/32/62858-closed-book-icon.png'/>
-                    <Stars rating={book.volumeInfo.averageRating ? book.volumeInfo.averageRating : "skip"} bookId={book._id}/>
+                </div>
+                <div className={styles.myRatingContainer}>
+                        <p className={styles.bookRatingUser}>My Rating</p>
+                        <Rating />
                 </div>
                 <div className={styles.reviewsList}>
                     <RatingList />

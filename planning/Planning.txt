@@ -50,5 +50,5 @@ Ratings:
 **Stretch Goals**
 - [X] Have a user authentication page where a user is authenticated using Google.
 - [ ] Add more components to the book view pages (average rating, # of views, liking reviews, etc.).
-- [ ] Be able to add written reviews instead of just ratings.
+- [X] Be able to add written reviews instead of just ratings.
 - [ ] Add a GIF keyboard API to written reviews.
