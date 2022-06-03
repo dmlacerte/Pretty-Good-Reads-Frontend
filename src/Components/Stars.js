@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import styles from './css/Rating.module.css'
 import axios from 'axios'
+import UserContext from '../UserContext'
 
 const Stars = ({userId, bookId}) => {
+    const {reRender} = useContext(UserContext)
     const [starRating, setStarRating] = useState(null)
 
     useEffect(() => {
@@ -13,7 +15,7 @@ const Stars = ({userId, bookId}) => {
             if(!res.data) setStarRating(null);
             else setStarRating(res.data.score)
         })
-    }, [])
+    }, [reRender])
 
   return (
     <>
